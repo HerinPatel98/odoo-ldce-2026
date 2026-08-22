@@ -79,6 +79,7 @@ if (registerForm) {
         alert(
             "Registration successful!"
         );
+         window.location.href = "login.html";
 
     });
 
@@ -118,10 +119,7 @@ if (loginForm) {
             password
         });
 
-
-        alert(
-            "Login successful!"
-        );
+         window.location.href = "../index.html";
 
     });
 
