@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Saved Places</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .place-card {
+      background-color: #ffffff;
+      border: 1px solid var(--gt-border, #e2e8f0);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .place-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+    .place-card-img-wrapper {
+      position: relative;
+      height: 190px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .place-card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .place-card:hover .place-card-img-wrapper img {
+      transform: scale(1.04);
+    }
+    .save-bookmark-btn {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      color: var(--gt-secondary, #f59e0b);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    .save-bookmark-btn:hover {
+      transform: scale(1.1);
+      background: #ffffff;
+    }
+    .filter-pill {
+      border: 1px solid var(--gt-border, #e2e8f0);
+      background-color: #ffffff;
+      border-radius: 9999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gt-text-muted, #64748b);
+      transition: all 0.15s ease;
+    }
+    .filter-pill:hover {
+      background-color: #f8fafc;
+      color: var(--gt-text-main, #0f172a);
+    }
+    .filter-pill.active {
+      background-color: var(--gt-primary-active, #0d9488);
+      color: #ffffff;
+      border-color: var(--gt-primary-active, #0d9488);
+    }
+  </style>
+</head>
+<body class="p-4 p-lg-5" style="background-color: var(--gt-bg, #f8fafc); min-height: 100vh;">
+
+  <!-- Header Section -->
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
+    <div>
+      <h3 class="fw-bold mb-1 gt-brand">Saved Places</h3>
+      <p class="text-muted small mb-0">Your bucket list destinations, curated attractions, and saved restaurants.</p>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary, #f59e0b); border: none;" data-bs-toggle="modal" data-bs-target="#addPlaceModal">
+        <i class="bi bi-plus-lg"></i>
+        <span>Add Place</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Filter Pills Bar -->
+  <div class="d-flex align-items-center gap-2 overflow-x-auto pb-2 mb-4" id="placeFilterContainer">
+    <button type="button" class="filter-pill active" data-category="all">All Places (6)</button>
+    <button type="button" class="filter-pill" data-category="attraction">Attractions</button>
+    <button type="button" class="filter-pill" data-category="food">Cafes &amp; Dining</button>
+    <button type="button" class="filter-pill" data-category="hotel">Stays &amp; Resorts</button>
+    <button type="button" class="filter-pill" data-category="nature">Nature &amp; Scenic</button>
+  </div>
+
+  <!-- Places Grid -->
+  <div class="row g-4" id="placesGrid">
+    
+    <!-- Place Card 1 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="attraction">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80" alt="Senso-ji Temple">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Tokyo, Japan
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Senso-ji Temple</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.8</span>
+            </div>
+            <p class="text-muted small mb-3">Ancient Buddhist temple in Asakusa with a five-story pagoda and vibrant food stalls along Nakamise-dori.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>Cultural Sight</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Senso-ji Temple')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 2 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="nature">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80" alt="Arashiyama Bamboo Grove">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Kyoto, Japan
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Arashiyama Bamboo Grove</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.9</span>
+            </div>
+            <p class="text-muted small mb-3">Towering green bamboo stalks swaying with the wind. Best visited at dawn for quiet morning photography.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>Nature &amp; Scenic</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Arashiyama Bamboo Grove')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 3 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="food">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80" alt="Omoide Yokocho">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Shinjuku, Tokyo
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Omoide Yokocho Alleys</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.7</span>
+            </div>
+            <p class="text-muted small mb-3">Historic culinary alley with counter-style yakitori joints and authentic Showa-era street ambience.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>Dining &amp; Drinks</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Omoide Yokocho')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 4 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="attraction">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop&q=80" alt="Positano Coast">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Amalfi Coast, Italy
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Positano Cliffside Village</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.9</span>
+            </div>
+            <p class="text-muted small mb-3">Picturesque seaside enclave known for dramatic cliffside villas, pebble beachfronts, and coastal boat tours.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>Landmark</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Positano Cliffside')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 5 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="hotel">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&auto=format&fit=crop&q=80" alt="Hakone Ginyu Ryokan">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Hakone, Japan
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Hakone Ginyu Onsen Ryokan</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.9</span>
+            </div>
+            <p class="text-muted small mb-3">Traditional mountain hot-spring retreat featuring open-air private onsen baths overlooking the valley gorge.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>Resort &amp; Spa</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Hakone Ginyu')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Place Card 6 -->
+    <div class="col-12 col-md-6 col-xl-4 place-item" data-category="nature">
+      <div class="place-card shadow-sm">
+        <div class="place-card-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80" alt="Lake Louise">
+          <button class="save-bookmark-btn" onclick="removePlace(this)">
+            <i class="bi bi-bookmark-fill"></i>
+          </button>
+          <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+            <i class="bi bi-geo-alt me-1"></i>Alberta, Canada
+          </span>
+        </div>
+        <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+          <div>
+            <div class="d-flex justify-content-between align-items-start mb-1">
+              <h5 class="fw-bold mb-0 text-dark">Lake Louise &amp; Moraine</h5>
+              <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>4.9</span>
+            </div>
+            <p class="text-muted small mb-3">Glacier-fed turquoise lake surrounded by soaring Canadian Rocky Mountain peaks and alpine hiking trails.</p>
+          </div>
+          <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+            <span class="text-muted small"><i class="bi bi-tag me-1"></i>National Park</span>
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('Lake Louise')">
+              + Add to Trip
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Add Place Modal -->
+  <div class="modal fade" id="addPlaceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="fw-bold mb-0">Save a New Place</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form id="addPlaceForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-muted">Place or Business Name</label>
+              <input type="text" class="form-control rounded-3" id="placeName" placeholder="e.g. Tsukiji Outer Market" required>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">City / Region</label>
+                <input type="text" class="form-control rounded-3" id="placeLocation" placeholder="Tokyo, Japan" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Category</label>
+                <select class="form-select rounded-3" id="placeCategory">
+                  <option value="attraction" selected>Attraction</option>
+                  <option value="food">Cafes &amp; Dining</option>
+                  <option value="hotel">Stays &amp; Resorts</option>
+                  <option value="nature">Nature &amp; Scenic</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-muted">Image URL</label>
+              <input type="url" class="form-control rounded-3" id="placeImageUrl" placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80">
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-semibold text-muted">Short Description / Notes</label>
+              <textarea class="form-control rounded-3" id="placeNotes" rows="2" placeholder="Why do you want to visit this place?"></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn text-white rounded-pill px-4" style="background-color: var(--gt-secondary, #f59e0b);">Save Place</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Filter Category Switcher
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const cat = this.getAttribute('data-category');
+        const items = document.querySelectorAll('.place-item');
+
+        items.forEach(item => {
+          if (cat === 'all' || item.getAttribute('data-category') === cat) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Remove Bookmark
+    function removePlace(btn) {
+      const card = btn.closest('.place-item');
+      if (card && confirm('Remove this place from your saved list?')) {
+        card.remove();
+      }
+    }
+
+    // Add to Itinerary Mock Trigger
+    function addToTrip(placeName) {
+      alert(`"${placeName}" has been added to your draft itinerary queue!`);
+    }
+
+    // Add Place Form Submit
+    document.getElementById('addPlaceForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('placeName').value;
+      const location = document.getElementById('placeLocation').value;
+      const category = document.getElementById('placeCategory').value;
+      const img = document.getElementById('placeImageUrl').value;
+      const notes = document.getElementById('placeNotes').value;
+
+      const newCol = document.createElement('div');
+      newCol.className = 'col-12 col-md-6 col-xl-4 place-item';
+      newCol.setAttribute('data-category', category);
+      newCol.innerHTML = `
+        <div class="place-card shadow-sm">
+          <div class="place-card-img-wrapper">
+            <img src="${img}" alt="${name}">
+            <button class="save-bookmark-btn" onclick="removePlace(this)">
+              <i class="bi bi-bookmark-fill"></i>
+            </button>
+            <span class="badge position-absolute bottom-0 start-0 m-3 rounded-pill bg-dark bg-opacity-75 text-white fw-semibold small">
+              <i class="bi bi-geo-alt me-1"></i>${location}
+            </span>
+          </div>
+          <div class="p-4 d-flex flex-column justify-content-between flex-grow-1">
+            <div>
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <h5 class="fw-bold mb-0 text-dark">${name}</h5>
+                <span class="badge bg-light text-warning border rounded-pill small"><i class="bi bi-star-fill me-1"></i>New</span>
+              </div>
+              <p class="text-muted small mb-3">${notes || 'Custom saved landmark.'}</p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+              <span class="text-muted small"><i class="bi bi-tag me-1"></i>${category}</span>
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium" onclick="addToTrip('${name}')">
+                + Add to Trip
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('placesGrid').prepend(newCol);
+      const modalEl = document.getElementById('addPlaceModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
