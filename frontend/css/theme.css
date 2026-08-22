@@ -1,68 +1,97 @@
 :root {
-  --gt-primary: #0f766e;
-  --gt-primary-active: #0d9488;
-  --gt-primary-light: #f0fdfa;
-  --gt-secondary: #d97706;
-  --gt-secondary-hover: #b45309;
-
   --gt-bg: #f9f8f4;
   --gt-surface: #ffffff;
+  --gt-primary: #0f766e;
+  --gt-primary-active: #0d9488;
+  --gt-secondary: #d97706;
   --gt-text-main: #111827;
   --gt-text-muted: #6b7280;
   --gt-border: #edf0f5;
-
   --gt-radius-card: 1.25rem;
-  --gt-radius-pill: 9999px;
-  --gt-shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
 }
 
 body {
   background-color: var(--gt-bg);
   color: var(--gt-text-main);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.sidebar-wrapper {
+.gt-brand {
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+
+.sidebar {
   background-color: var(--gt-surface);
   border-right: 1px solid var(--gt-border);
   min-height: 100vh;
 }
 
-.gt-brand-logo {
-  font-family: Georgia, serif;
-  font-weight: 700;
-  color: var(--gt-text-main);
-  letter-spacing: -0.5px;
-}
-
-.gt-nav-link {
+.nav-link-gt {
   color: var(--gt-text-muted);
   font-weight: 500;
   padding: 0.65rem 1rem;
   border-radius: 0.75rem;
-  transition: all 0.2s ease;
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  text-decoration: none;
+  transition: all 0.15s ease-in-out;
 }
 
-.gt-nav-link:hover {
-  background-color: var(--gt-bg);
+.nav-link-gt:hover {
+  background-color: #f3f4f6;
   color: var(--gt-primary-active);
 }
 
-.gt-nav-link.active {
-  background-color: var(--gt-primary-light);
+.nav-link-gt.active {
+  background-color: #f0fdfa;
   color: var(--gt-primary-active);
   font-weight: 600;
 }
 
-.upgrade-banner {
+.upgrade-box {
   background: linear-gradient(135deg, #0d9488 0%, #115e59 100%);
   border-radius: var(--gt-radius-card);
 }
 
-.card {
-  border-color: var(--gt-border) !important;
+.card-dashboard {
+  background-color: #ffffff;
+  border: 1px solid var(--gt-border);
+  border-radius: var(--gt-radius-card);
+}
+
+.trip-card-img {
+  height: 100%;
+  min-height: 110px;
+  object-fit: cover;
+}
+
+.destination-card {
+  border-radius: var(--gt-radius-card);
+  overflow: hidden;
+  height: 240px;
+  position: relative;
+}
+
+.destination-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  color: #ffffff;
+}
+
+.virtual-card {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  border-radius: var(--gt-radius-card);
 }
