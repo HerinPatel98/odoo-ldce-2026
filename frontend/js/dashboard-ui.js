@@ -6,9 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (slider && durationValue && projectedCost) {
     slider.addEventListener('input', (e) => {
       const days = parseInt(e.target.value, 10);
+      const calculated = Math.round(days * DashboardData.costProjection.baseDailyRate);
+      
       durationValue.textContent = `${days} days`;
-      const cost = Math.round(days * 120.71);
-      projectedCost.textContent = `$${cost.toLocaleString()}`;
+      projectedCost.textContent = `$${calculated.toLocaleString()}`;
+
+      const dynamicSparkline = [
+        calculated * 0.15,
+        calculated * 0.35,
+        calculated * 0.6,
+        calculated * 0.8,
+        calculated
+      ];
+      renderProjectionSparkline(dynamicSparkline);
     });
   }
 });
