@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Premium Subscription Plans</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .pricing-card {
+      background-color: #ffffff;
+      border: 1px solid var(--gt-border);
+      border-radius: 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.12);
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--gt-primary-active);
+      position: relative;
+    }
+    .billing-toggle-pill {
+      background-color: #edece8;
+      border-radius: 9999px;
+      padding: 0.25rem;
+      display: inline-flex;
+    }
+    .billing-toggle-btn {
+      border: none;
+      background: transparent;
+      padding: 0.4rem 1.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: 9999px;
+      color: var(--gt-text-muted);
+      transition: all 0.15s ease;
+    }
+    .billing-toggle-btn.active {
+      background-color: #ffffff;
+      color: var(--gt-text-main);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      font-weight: 600;
+    }
+    .feature-icon-check {
+      color: var(--gt-primary-active);
+      font-size: 1.1rem;
+    }
+    .feature-icon-cross {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body class="p-4 p-lg-5" style="background-color: var(--gt-bg); min-height: 100vh;">
+
+  <!-- Header -->
+  <div class="text-center max-w-lg mx-auto mb-5">
+    <span class="badge rounded-pill px-3 py-1 fw-bold text-white mb-3" style="background-color: var(--gt-secondary);">GLOBETROTTER PASS</span>
+    <h2 class="fw-bold gt-brand mb-2">Elevate Your Travel Experience</h2>
+    <p class="text-muted small mx-auto" style="max-width: 520px;">
+      Unlock unlimited AI-assisted itineraries, real-time flight alert monitoring, offline PDF exports, and 2.5% cashback miles on every booking.
+    </p>
+
+    <!-- Billing Cycle Switcher -->
+    <div class="billing-toggle-pill mt-4 shadow-sm">
+      <button type="button" class="billing-toggle-btn active" id="btnMonthly">Monthly Billing</button>
+      <button type="button" class="billing-toggle-btn" id="btnAnnual">
+        Annual Billing <span class="badge bg-success-subtle text-success rounded-pill ms-1" style="font-size: 0.7rem;">Save 20%</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Pricing Cards Grid -->
+  <div class="row g-4 justify-content-center mb-5">
+    
+    <!-- Tier 1: Free Explorer -->
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="pricing-card p-4 h-100 shadow-sm">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Explorer</h5>
+            <span class="badge bg-light text-muted border rounded-pill">Current Tier</span>
+          </div>
+          <p class="text-muted small mb-4">Essential trip planning for occasional travelers and weekend getaways.</p>
+          
+          <div class="d-flex align-items-baseline gap-1 mb-4 pb-3 border-bottom">
+            <span class="fs-1 fw-bold text-dark">$0</span>
+            <span class="text-muted small">/ forever</span>
+          </div>
+
+          <ul class="list-unstyled d-flex flex-column gap-3 small mb-4">
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Up to 3 Active Itineraries</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Standard Budget Tracker</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Community Destination Guides</span>
+            </li>
+            <li class="d-flex align-items-center gap-2 text-muted">
+              <i class="bi bi-x-circle feature-icon-cross"></i>
+              <span class="text-decoration-line-through">Offline PDF & CSV Export</span>
+            </li>
+            <li class="d-flex align-items-center gap-2 text-muted">
+              <i class="bi bi-x-circle feature-icon-cross"></i>
+              <span class="text-decoration-line-through">Real-time Flight Change Alerts</span>
+            </li>
+            <li class="d-flex align-items-center gap-2 text-muted">
+              <i class="bi bi-x-circle feature-icon-cross"></i>
+              <span class="text-decoration-line-through">24/7 Live Concierge Access</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn btn-outline-secondary w-100 rounded-pill py-2 fw-semibold small" disabled>
+          Current Plan
+        </button>
+      </div>
+    </div>
+
+    <!-- Tier 2: Globetrotter Pro (Featured) -->
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="pricing-card featured p-4 h-100 shadow-sm">
+        <span class="badge position-absolute top-0 start-50 translate-middle rounded-pill text-white fw-bold px-3 py-1" style="background-color: var(--gt-primary-active); font-size: 0.75rem;">
+          MOST POPULAR
+        </span>
+
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-3 mt-1">
+            <h5 class="fw-bold mb-0">Globetrotter Pro</h5>
+            <span class="badge rounded-pill text-white" style="background-color: var(--gt-primary-active);">PRO PASS</span>
+          </div>
+          <p class="text-muted small mb-4">Complete suite for frequent flyers, remote nomads, and family vacations.</p>
+          
+          <div class="d-flex align-items-baseline gap-1 mb-4 pb-3 border-bottom">
+            <span class="fs-1 fw-bold text-dark" id="proPrice">$9</span>
+            <span class="text-muted small" id="proInterval">/ month</span>
+          </div>
+
+          <ul class="list-unstyled d-flex flex-column gap-3 small mb-4">
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span><strong>Unlimited</strong> Active Itineraries</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Multi-City Route Optimizer</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Offline PDF &amp; CSV Export</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Real-time Flight &amp; Gate Alert SMS</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Collaborative Itinerary Planning (Up to 5)</span>
+            </li>
+            <li class="d-flex align-items-center gap-2 text-muted">
+              <i class="bi bi-x-circle feature-icon-cross"></i>
+              <span class="text-decoration-line-through">Dedicated 24/7 Concierge Desk</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn text-white w-100 rounded-pill py-2 fw-semibold shadow-sm" style="background-color: var(--gt-primary-active); border: none;" onclick="selectPlan('pro')">
+          Upgrade to Pro
+        </button>
+      </div>
+    </div>
+
+    <!-- Tier 3: Concierge VIP -->
+    <div class="col-12 col-md-6 col-xl-4">
+      <div class="pricing-card p-4 h-100 shadow-sm">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Concierge VIP</h5>
+            <span class="badge rounded-pill text-white" style="background-color: var(--gt-secondary);">VIP DESK</span>
+          </div>
+          <p class="text-muted small mb-4">Full bespoke booking handling, luxury lounge passes, and live travel agents.</p>
+          
+          <div class="d-flex align-items-baseline gap-1 mb-4 pb-3 border-bottom">
+            <span class="fs-1 fw-bold text-dark" id="vipPrice">$24</span>
+            <span class="text-muted small" id="vipInterval">/ month</span>
+          </div>
+
+          <ul class="list-unstyled d-flex flex-column gap-3 small mb-4">
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Everything included in <strong>Pro</strong></span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span><strong>24/7 Live Human Concierge</strong> (WhatsApp/Chat)</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Automated Flight Delay Compensation Filing</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Unlimited Trip Collaborators</span>
+            </li>
+            <li class="d-flex align-items-center gap-2">
+              <i class="bi bi-check2-circle feature-icon-check"></i>
+              <span>Airport Lounge Access Vouchers (2x/year)</span>
+            </li>
+          </ul>
+        </div>
+
+        <button class="btn text-white w-100 rounded-pill py-2 fw-semibold shadow-sm" style="background-color: var(--gt-secondary); border: none;" onclick="selectPlan('vip')">
+          Upgrade to VIP
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Guarantee & Trust Badges -->
+  <div class="card card-dashboard p-4 shadow-sm border-0 text-center">
+    <div class="row g-3 align-items-center justify-content-center text-muted small">
+      <div class="col-12 col-md-4 d-flex align-items-center justify-content-center gap-2">
+        <i class="bi bi-shield-check fs-5 text-success"></i>
+        <span>14-Day Money-Back Guarantee</span>
+      </div>
+      <div class="col-12 col-md-4 d-flex align-items-center justify-content-center gap-2">
+        <i class="bi bi-arrow-repeat fs-5" style="color: var(--gt-primary-active);"></i>
+        <span>Cancel or Switch Anytime</span>
+      </div>
+      <div class="col-12 col-md-4 d-flex align-items-center justify-content-center gap-2">
+        <i class="bi bi-lock-fill fs-5 text-dark"></i>
+        <span>Encrypted 256-Bit SSL Checkout</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    let isAnnual = false;
+    const btnMonthly = document.getElementById('btnMonthly');
+    const btnAnnual = document.getElementById('btnAnnual');
+    const proPrice = document.getElementById('proPrice');
+    const proInterval = document.getElementById('proInterval');
+    const vipPrice = document.getElementById('vipPrice');
+    const vipInterval = document.getElementById('vipInterval');
+
+    btnMonthly.addEventListener('click', () => {
+      isAnnual = false;
+      btnMonthly.classList.add('active');
+      btnAnnual.classList.remove('active');
+      proPrice.textContent = '$9';
+      proInterval.textContent = '/ month';
+      vipPrice.textContent = '$24';
+      vipInterval.textContent = '/ month';
+    });
+
+    btnAnnual.addEventListener('click', () => {
+      isAnnual = true;
+      btnAnnual.classList.add('active');
+      btnMonthly.classList.remove('active');
+      proPrice.textContent = '$85';
+      proInterval.textContent = '/ year (Save $23)';
+      vipPrice.textContent = '$230';
+      vipInterval.textContent = '/ year (Save $58)';
+    });
+
+    function selectPlan(tier) {
+      const cycle = isAnnual ? 'annual' : 'monthly';
+      alert(`Proceeding to checkout for ${tier.toUpperCase()} (${cycle} plan).`);
+    }
+  </script>
+</body>
+</html>
