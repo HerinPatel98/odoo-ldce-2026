@@ -95,3 +95,24 @@ body {
   background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
   border-radius: var(--gt-radius-card);
 }
+
+.trip-card-compact {
+  background: #ffffff;
+  border: 1px solid var(--gt-border);
+  border-radius: 1rem;
+  padding: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.trip-card-compact:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.trip-thumb-sm {
+  width: 90px;
+  height: 90px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
