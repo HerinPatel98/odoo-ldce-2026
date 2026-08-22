@@ -1,3 +1,24 @@
+const url = "http://localhost:8000";
+const logoutBtn = document.querySelectorAll(".logout-btn")
+if (logoutBtn) {
+    console.log("logout button", logoutBtn)
+    logoutBtn.forEach(btn => {
+        btn.addEventListener("click", logOut)
+    })
+    function logOut() {
+        console.log("hello")
+        fetch(`${url}/api/auth/logout`)
+            .then(response => response.json())
+            .then(data => {
+
+                window.location.href = "pages/login.html";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred during logout.");
+            });
+    }
+}
 function togglePassword(inputId) {
 
     const input = document.getElementById(inputId);
@@ -21,7 +42,7 @@ const registerForm =
 
 if (registerForm) {
 
-    registerForm.addEventListener("submit", function(event) {
+    registerForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -69,31 +90,42 @@ if (registerForm) {
         }
 
 
-        console.log({
-            name,
-            email,
-            password
-        });
+        fetch(`${url}/api/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert(
+                    "Registration successful!"
+                );
+                window.location.href = "login.html";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred during registration.");
+            });
 
-
-        alert(
-            "Registration successful!"
-        );
-         window.location.href = "login.html";
 
     });
 
 }
 
 
-/* Login */
-
 const loginForm =
     document.getElementById("loginForm");
 
 if (loginForm) {
 
-    loginForm.addEventListener("submit", function(event) {
+    loginForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
@@ -119,7 +151,26 @@ if (loginForm) {
             password
         });
 
-         window.location.href = "../index.html";
+        fetch(`${url}/api/auth/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                email,
+                password
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Login successful!");
+                window.location.href = "../index.html";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred during login.");
+            });
 
     });
 
