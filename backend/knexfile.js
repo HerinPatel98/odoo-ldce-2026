@@ -12,11 +12,11 @@
 export const development = {
   client: 'mysql2',
   connection: {
-    database: 'odoo_hackthon',
-    user: 'root',
-    password: '',
-    host: "localhost",
-    port: 3306
+    database: process.env.DB_NAME || "test",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "",
+    host: process.env.DB_HOST || "localhost",
+    port: process.env.DB_PORT || 3306
   },
   pool: {
     min: 2,

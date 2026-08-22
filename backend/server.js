@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import { authRouter } from "./routes/auth.route.js"
 import dotenv from 'dotenv'
 import session from "express-session"
@@ -9,6 +10,12 @@ const PORT = 8000
 const app = express()
 
 app.use(express.json())
+app.use(
+    cors({
+        origin: true,
+        credentials: true
+    })
+)
 app.use(
     session({
         secret: process.env.SESSION_SECRET,

@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function (knex) {
+export function up(knex) {
     return knex.schema.createTable("users", function (table) {
         table.increments("id").primary();
 
@@ -16,12 +16,12 @@ exports.up = function (knex) {
 
         table.timestamps(true, true);
     });
-};
+}
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {
+export function down(knex) {
     return knex.schema.dropTableIfExists("users");
-};
+}
