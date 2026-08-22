@@ -1,505 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobeTrotter Dashboard</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/theme.css">
-    <style>
-        html, body { margin: 0; padding: 0; }
-        body { background: #f9f8f4; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter Dashboard</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f9f8f4;
+    }
+  </style>
 </head>
+
 <body>
-<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
-          <div class="input-group" style="max-width: 360px;">
-            <span class="input-group-text bg-white border-end-0 rounded-start-pill ps-3">
-              <i class="bi bi-search text-muted"></i>
-            </span>
-            <input type="text" class="form-control bg-white border-start-0 rounded-end-pill py-2"
-              placeholder="Search destinations, hotels, flights...">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
+    <div class="input-group" style="max-width: 360px;">
+      <span class="input-group-text bg-white border-end-0 rounded-start-pill ps-3">
+        <i class="bi bi-search text-muted"></i>
+      </span>
+      <input type="text" class="form-control bg-white border-start-0 rounded-end-pill py-2"
+        placeholder="Search destinations, hotels, flights...">
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="dropdown">
+        <button
+          class="btn btn-white bg-white border rounded-pill px-3 py-2 dropdown-toggle d-flex align-items-center gap-2 small fw-medium"
+          type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-calendar3"></i>
+          <span>Oct 12 - Oct 28</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
+          <li><a class="dropdown-item" href="#">This Month</a></li>
+          <li><a class="dropdown-item" href="#">Next 30 Days</a></li>
+        </ul>
+      </div>
+
+      <button
+        class="btn btn-white bg-white border rounded-pill px-3 py-2 d-flex align-items-center gap-2 small fw-medium text-dark">
+        <i class="bi bi-file-earmark-arrow-down"></i>
+        <span>Export CSV</span>
+      </button>
+
+      <div class="dropdown">
+        <button class="btn p-0 border-0 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+            alt="Alex Mercer" class="rounded-circle object-fit-cover border border-2 border-white shadow-sm" width="38"
+            height="38">
+          <div class="d-none d-sm-block text-start">
+            <span class="fw-semibold small d-block text-dark lh-1">Alex Mercer</span>
+            <span class="text-muted" style="font-size: 0.7rem;">Free Tier</span>
           </div>
+          <i class="bi bi-chevron-down text-muted small ms-1"></i>
+        </button>
 
-          <div class="d-flex align-items-center gap-3">
-            <div class="dropdown">
-              <button
-                class="btn btn-white bg-white border rounded-pill px-3 py-2 dropdown-toggle d-flex align-items-center gap-2 small fw-medium"
-                type="button" data-bs-toggle="dropdown">
-                <i class="bi bi-calendar3"></i>
-                <span>Oct 12 - Oct 28</span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">Next 30 Days</a></li>
-              </ul>
-            </div>
-
-            <button
-              class="btn btn-white bg-white border rounded-pill px-3 py-2 d-flex align-items-center gap-2 small fw-medium text-dark">
-              <i class="bi bi-file-earmark-arrow-down"></i>
-              <span>Export CSV</span>
-            </button>
-
-            <div class="dropdown">
-              <button class="btn p-0 border-0 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                  alt="Alex Mercer" class="rounded-circle object-fit-cover border border-2 border-white shadow-sm"
-                  width="38" height="38">
-                <div class="d-none d-sm-block text-start">
-                  <span class="fw-semibold small d-block text-dark lh-1">Alex Mercer</span>
-                  <span class="text-muted" style="font-size: 0.7rem;">Free Tier</span>
-                </div>
-                <i class="bi bi-chevron-down text-muted small ms-1"></i>
-              </button>
-
-              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 p-2 mt-2"
-                style="min-width: 200px;">
-                <li>
-                  <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-person text-muted"></i>
-                    <span>My Profile</span>
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
-                    <i class="bi bi-gear text-muted"></i>
-                    <span>Preferences</span>
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider my-1">
-                </li>
-                <li>
-                  <a class="dropdown-item rounded-3 py-2 small text-danger d-flex align-items-center gap-2"
-                    href="login.html">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span class="fw-medium">Sign Out</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <a href="plan_trip.html" onclick="parent.loadModule('pages/plan_trip.html'); return false;"
-              class="btn text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm"
-              style="background-color: var(--gt-secondary); border: none;">
-              <i class="bi bi-plus-lg"></i>
-              <span>Plan New Trip</span>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 p-2 mt-2" style="min-width: 200px;">
+          <li>
+            <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
+              <i class="bi bi-person text-muted"></i>
+              <span>My Profile</span>
             </a>
+          </li>
+          <li>
+            <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
+              <i class="bi bi-gear text-muted"></i>
+              <span>Preferences</span>
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider my-1">
+          </li>
+          <li>
+            <a class="dropdown-item rounded-3 py-2 small text-danger d-flex align-items-center gap-2 logout-btn">
+              <i class="bi bi-box-arrow-right"></i>
+              <span class="fw-medium">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="plan_trip.html" onclick="parent.loadModule('pages/plan_trip.html'); return false;"
+        class="btn text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm"
+        style="background-color: var(--gt-secondary); border: none;">
+        <i class="bi bi-plus-lg"></i>
+        <span>Plan New Trip</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="col-12 col-xl-8">
+      <div class="card card-dashboard p-4 h-100 shadow-sm">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+          <div>
+            <h5 class="fw-bold mb-1">Travel Spend & Mileage Analytics</h5>
+            <p class="text-muted small mb-0">Budget vs. actual across your monthly trips</p>
+          </div>
+          <div class="d-flex align-items-center gap-3 small">
+            <span class="d-flex align-items-center gap-1 text-muted">
+              <span class="rounded-circle d-inline-block"
+                style="width: 8px; height: 8px; background-color: var(--gt-primary-active);"></span>
+              Budget
+            </span>
+            <span class="d-flex align-items-center gap-1 text-muted">
+              <span class="rounded-circle d-inline-block"
+                style="width: 8px; height: 8px; background-color: var(--gt-secondary);"></span>
+              Actual
+            </span>
+          </div>
+        </div>
+        <div style="height: 220px;" class="position-relative">
+          <canvas id="spendAnalyticsChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+      <div class="row g-3 h-100">
+        <div class="col-6">
+          <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-center rounded-3"
+              style="width: 36px; height: 36px; background-color: #ccfbf1; color: var(--gt-primary-active);">
+              <i class="bi bi-currency-dollar fs-5"></i>
+            </div>
+            <div class="my-2">
+              <div class="fs-4 fw-bold mb-0">$12,450</div>
+              <div class="text-muted small" style="font-size: 0.75rem;">Total Budget Tracked</div>
+            </div>
+            <span
+              class="badge bg-success-subtle text-success border border-success-subtle rounded-pill align-self-start"
+              style="font-size: 0.7rem;">+12% vs last month</span>
           </div>
         </div>
 
-        <div class="row g-4 mb-4">
-          <div class="col-12 col-xl-8">
-            <div class="card card-dashboard p-4 h-100 shadow-sm">
-              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
-                <div>
-                  <h5 class="fw-bold mb-1">Travel Spend & Mileage Analytics</h5>
-                  <p class="text-muted small mb-0">Budget vs. actual across your monthly trips</p>
-                </div>
-                <div class="d-flex align-items-center gap-3 small">
-                  <span class="d-flex align-items-center gap-1 text-muted">
-                    <span class="rounded-circle d-inline-block"
-                      style="width: 8px; height: 8px; background-color: var(--gt-primary-active);"></span>
-                    Budget
-                  </span>
-                  <span class="d-flex align-items-center gap-1 text-muted">
-                    <span class="rounded-circle d-inline-block"
-                      style="width: 8px; height: 8px; background-color: var(--gt-secondary);"></span>
-                    Actual
-                  </span>
-                </div>
-              </div>
-              <div style="height: 220px;" class="position-relative">
-                <canvas id="spendAnalyticsChart"></canvas>
-              </div>
+        <div class="col-6">
+          <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-center rounded-3"
+              style="width: 36px; height: 36px; background-color: #fef3c7; color: var(--gt-secondary);">
+              <i class="bi bi-airplane-fill fs-5"></i>
             </div>
-          </div>
-
-          <div class="col-12 col-xl-4">
-            <div class="row g-3 h-100">
-              <div class="col-6">
-                <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                  <div class="d-flex align-items-center justify-content-center rounded-3"
-                    style="width: 36px; height: 36px; background-color: #ccfbf1; color: var(--gt-primary-active);">
-                    <i class="bi bi-currency-dollar fs-5"></i>
-                  </div>
-                  <div class="my-2">
-                    <div class="fs-4 fw-bold mb-0">$12,450</div>
-                    <div class="text-muted small" style="font-size: 0.75rem;">Total Budget Tracked</div>
-                  </div>
-                  <span
-                    class="badge bg-success-subtle text-success border border-success-subtle rounded-pill align-self-start"
-                    style="font-size: 0.7rem;">+12% vs last month</span>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                  <div class="d-flex align-items-center justify-content-center rounded-3"
-                    style="width: 36px; height: 36px; background-color: #fef3c7; color: var(--gt-secondary);">
-                    <i class="bi bi-airplane-fill fs-5"></i>
-                  </div>
-                  <div class="my-2">
-                    <div class="fs-4 fw-bold mb-0">3</div>
-                    <div class="text-muted small" style="font-size: 0.75rem;">Upcoming Trips</div>
-                  </div>
-                  <span class="badge bg-light text-muted border rounded-pill align-self-start"
-                    style="font-size: 0.7rem;">Active itineraries</span>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                  <div class="d-flex align-items-center justify-content-center rounded-3"
-                    style="width: 36px; height: 36px; background-color: #ccfbf1; color: var(--gt-primary-active);">
-                    <i class="bi bi-bezier2 fs-5"></i>
-                  </div>
-                  <div>
-                    <div class="fs-4 fw-bold mb-0">14,205</div>
-                    <div class="text-muted small" style="font-size: 0.75rem;">Miles Traveled</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-6">
-                <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
-                  <div class="d-flex align-items-center justify-content-center rounded-3"
-                    style="width: 36px; height: 36px; background-color: #fef3c7; color: var(--gt-secondary);">
-                    <i class="bi bi-credit-card-2-front-fill fs-5"></i>
-                  </div>
-                  <div>
-                    <div class="fs-4 fw-bold mb-0">Premium</div>
-                    <div class="text-muted small" style="font-size: 0.75rem;">Active Travel Pass</div>
-                  </div>
-                </div>
-              </div>
+            <div class="my-2">
+              <div class="fs-4 fw-bold mb-0">3</div>
+              <div class="text-muted small" style="font-size: 0.75rem;">Upcoming Trips</div>
             </div>
+            <span class="badge bg-light text-muted border rounded-pill align-self-start"
+              style="font-size: 0.7rem;">Active itineraries</span>
           </div>
         </div>
 
-        <div class="row g-4 mb-4">
-          <div class="col-12 col-xl-8">
-            <div class="card card-dashboard p-4 h-100 shadow-sm">
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <div>
-                  <h5 class="fw-bold mb-1">Trip Duration & Cost Projector</h5>
-                  <p class="text-muted small mb-0">Adjust trip length to see projected accommodation costs</p>
-                </div>
-                <span class="badge bg-light text-secondary border rounded-pill px-3 py-2 fw-medium">Tokyo, Japan</span>
-              </div>
-
-              <div class="my-3">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="small text-muted fw-semibold">Trip duration</span>
-                  <span class="fw-bold" id="durationValue" style="color: var(--gt-primary-active);">14 days</span>
-                </div>
-                <input type="range" class="form-range" min="1" max="30" value="14" id="durationSlider">
-                <div class="d-flex justify-content-between small text-muted">
-                  <span>1 day</span>
-                  <span>30 days</span>
-                </div>
-              </div>
-
-              <div class="d-flex justify-content-between align-items-end mt-4 pt-2">
-                <div>
-                  <div class="text-muted small">Projected accommodation cost</div>
-                  <div class="fs-4 fw-bold text-dark" id="projectedCost">$1,690</div>
-                </div>
-              </div>
+        <div class="col-6">
+          <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-center rounded-3"
+              style="width: 36px; height: 36px; background-color: #ccfbf1; color: var(--gt-primary-active);">
+              <i class="bi bi-bezier2 fs-5"></i>
             </div>
-          </div>
-
-          <div class="col-12 col-xl-4">
-            <div
-              class="card border-0 shadow-sm p-4 text-white h-100 d-flex flex-column justify-content-between virtual-card">
-              <div>
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <div class="d-flex align-items-center gap-2">
-                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white"
-                      style="background-color: var(--gt-primary-active); width: 24px; height: 24px;">
-                      <i class="bi bi-compass" style="font-size: 0.75rem;"></i>
-                    </div>
-                    <span class="fw-semibold small">GlobeTrotter</span>
-                  </div>
-                  <i class="bi bi-wifi fs-5 text-secondary"></i>
-                </div>
-
-                <div class="small text-muted mb-1" style="font-size: 0.75rem;">Cardholder</div>
-                <div class="fw-medium mb-3">Alex Mercer</div>
-
-                <div class="small text-muted mb-1" style="font-size: 0.75rem;">Card Number</div>
-                <div class="font-monospace text-light mb-3" style="letter-spacing: 2px;">•••• •••• •••• 4821</div>
-              </div>
-
-              <div>
-                <div class="d-flex justify-content-between align-items-end mb-3">
-                  <div>
-                    <div class="small text-muted" style="font-size: 0.75rem;">Cash-back Miles</div>
-                    <div class="fs-4 fw-bold text-white">2,480 <span class="fs-6 fw-normal text-muted">mi</span></div>
-                  </div>
-                  <span class="badge rounded-pill px-2 py-1"
-                    style="background-color: rgba(13, 148, 136, 0.2); color: #2dd4bf; font-size: 0.7rem;">Live •
-                    2.5%</span>
-                </div>
-
-                <div
-                  class="d-flex justify-content-between pt-2 border-top border-secondary border-opacity-25 small text-muted"
-                  style="font-size: 0.75rem;">
-                  <a href="#" class="text-decoration-none text-light opacity-75"><i
-                      class="bi bi-box-arrow-up-right me-1"></i>Redeem</a>
-                  <a href="#" class="text-decoration-none text-light opacity-75"><i
-                      class="bi bi-file-text me-1"></i>Statement</a>
-                  <a href="#" class="text-decoration-none text-light opacity-75"><i
-                      class="bi bi-lock me-1"></i>Freeze</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row g-4 mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h6 class="fw-bold mb-0">Recent Trips</h6>
-            <a href="my_itineraries.html" onclick="parent.loadModule('pages/my_itineraries.html'); return false;" class="text-decoration-none small fw-semibold"
-              style="color: var(--gt-primary-active); font-size: 0.8rem;">View all</a>
-          </div>
-
-          <div class="d-flex flex-column gap-2">
-            <div class="trip-card-compact d-flex align-items-center gap-3">
-              <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=300&auto=format&fit=crop&q=80"
-                  alt="Tokyo" class="trip-thumb-sm">
-                <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
-                  style="font-size: 0.65rem; padding: 2px 6px;">
-                  Tokyo
-                </span>
-              </div>
-
-              <div class="flex-grow-1 min-w-0">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                  <h6 class="fw-bold mb-0 text-truncate small">Autumn in Tokyo</h6>
-                  <span class="badge rounded-pill fw-medium"
-                    style="background-color: #ccfbf1; color: var(--gt-primary-active); font-size: 0.65rem;">85%
-                    planned</span>
-                </div>
-
-                <div class="text-muted small mb-2" style="font-size: 0.75rem;">
-                  <i class="bi bi-calendar3 me-1"></i>Oct 12 – Oct 20, 2026
-                </div>
-
-                <div class="progress mb-2" style="height: 4px;">
-                  <div class="progress-bar" style="width: 85%; background-color: var(--gt-primary-active);"></div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
-                  <span><i class="bi bi-moon me-1"></i>8 nights</span>
-                  <span><i class="bi bi-pin-map me-1"></i>14 spots</span>
-                  <span class="fw-semibold text-dark">$1,240</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="trip-card-compact d-flex align-items-center gap-3">
-              <div class="position-relative">
-                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&auto=format&fit=crop&q=80"
-                  alt="Amalfi" class="trip-thumb-sm">
-                <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
-                  style="font-size: 0.65rem; padding: 2px 6px;">
-                  Italy
-                </span>
-              </div>
-
-              <div class="flex-grow-1 min-w-0">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                  <h6 class="fw-bold mb-0 text-truncate small">Amalfi Road Trip</h6>
-                  <span class="badge rounded-pill fw-medium"
-                    style="background-color: #fef3c7; color: var(--gt-secondary); font-size: 0.65rem;">40%
-                    planned</span>
-                </div>
-
-                <div class="text-muted small mb-2" style="font-size: 0.75rem;">
-                  <i class="bi bi-calendar3 me-1"></i>Sep 4 – Sep 11, 2026
-                </div>
-
-                <div class="progress mb-2" style="height: 4px;">
-                  <div class="progress-bar" style="width: 40%; background-color: var(--gt-secondary);"></div>
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
-                  <span><i class="bi bi-moon me-1"></i>7 nights</span>
-                  <span><i class="bi bi-pin-map me-1"></i>6 spots</span>
-                  <span class="fw-semibold text-dark">$980</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
             <div>
-              <h5 class="fw-bold mb-1">Budget Overview</h5>
-              <p class="text-muted small mb-3">Tokyo trip allocation</p>
-              <div class="position-relative d-flex align-items-center justify-content-center my-3"
-                style="height: 180px;">
-                <canvas id="budgetDonutChart"></canvas>
-                <div class="position-absolute text-center">
-                  <span class="text-muted small d-block" style="font-size: 0.75rem;">Total</span>
-                  <span class="fs-5 fw-bold text-dark">$1,240</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="d-flex flex-column gap-2 small">
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="d-flex align-items-center gap-2 text-muted">
-                  <span class="rounded-circle d-inline-block"
-                    style="width: 10px; height: 10px; background-color: #0d9488;"></span>
-                  Stay
-                </span>
-                <span class="fw-bold text-dark">$720</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="d-flex align-items-center gap-2 text-muted">
-                  <span class="rounded-circle d-inline-block"
-                    style="width: 10px; height: 10px; background-color: #f59e0b;"></span>
-                  Transport
-                </span>
-                <span class="fw-bold text-dark">$310</span>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <span class="d-flex align-items-center gap-2 text-muted">
-                  <span class="rounded-circle d-inline-block"
-                    style="width: 10px; height: 10px; background-color: #0ea5e9;"></span>
-                  Food
-                </span>
-                <span class="fw-bold text-dark">$210</span>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="m-5 mb-4">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold mb-0">Trending Destinations</h5>
-        <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active);">Explore
-          all</a>
-      </div>
-
-      <div class="row g-4">
-        <div class="col-12 col-md-4">
-          <div class="destination-card shadow-sm">
-            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80"
-              alt="Kyoto Bamboo Forest">
-            <div class="destination-overlay">
-              <h6 class="fw-bold mb-1">Kyoto Bamboo Forest</h6>
-              <span class="small text-light opacity-75">Flights from $640 · 5-day avg.</span>
+              <div class="fs-4 fw-bold mb-0">14,205</div>
+              <div class="text-muted small" style="font-size: 0.75rem;">Miles Traveled</div>
             </div>
           </div>
         </div>
 
-        <div class="col-12 col-md-4">
-          <div class="destination-card shadow-sm">
-            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop&q=80"
-              alt="Santorini Sunset">
-            <div class="destination-overlay">
-              <h6 class="fw-bold mb-1">Santorini Sunset</h6>
-              <span class="small text-light opacity-75">Flights from $820 · 7-day avg.</span>
+        <div class="col-6">
+          <div class="card card-dashboard p-3 h-100 shadow-sm d-flex flex-column justify-content-between">
+            <div class="d-flex align-items-center justify-content-center rounded-3"
+              style="width: 36px; height: 36px; background-color: #fef3c7; color: var(--gt-secondary);">
+              <i class="bi bi-credit-card-2-front-fill fs-5"></i>
             </div>
-          </div>
-        </div>
-
-        <div class="col-12 col-md-4">
-          <div class="destination-card shadow-sm">
-            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80"
-              alt="Banff National Park">
-            <div class="destination-overlay">
-              <h6 class="fw-bold mb-1">Banff National Park</h6>
-              <span class="small text-light opacity-75">Flights from $510 · 6-day avg.</span>
+            <div>
+              <div class="fs-4 fw-bold mb-0">Premium</div>
+              <div class="text-muted small" style="font-size: 0.75rem;">Active Travel Pass</div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-const durationSlider = document.getElementById("durationSlider");
-const durationValue = document.getElementById("durationValue");
-const projectedCost = document.getElementById("projectedCost");
+  <div class="row g-4 mb-4">
+    <div class="col-12 col-xl-8">
+      <div class="card card-dashboard p-4 h-100 shadow-sm">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <div>
+            <h5 class="fw-bold mb-1">Trip Duration & Cost Projector</h5>
+            <p class="text-muted small mb-0">Adjust trip length to see projected accommodation costs</p>
+          </div>
+          <span class="badge bg-light text-secondary border rounded-pill px-3 py-2 fw-medium">Tokyo, Japan</span>
+        </div>
 
-if (durationSlider) {
-    durationSlider.addEventListener("input", function () {
+        <div class="my-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="small text-muted fw-semibold">Trip duration</span>
+            <span class="fw-bold" id="durationValue" style="color: var(--gt-primary-active);">14 days</span>
+          </div>
+          <input type="range" class="form-range" min="1" max="30" value="14" id="durationSlider">
+          <div class="d-flex justify-content-between small text-muted">
+            <span>1 day</span>
+            <span>30 days</span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-end mt-4 pt-2">
+          <div>
+            <div class="text-muted small">Projected accommodation cost</div>
+            <div class="fs-4 fw-bold text-dark" id="projectedCost">$1,690</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+      <div class="card border-0 shadow-sm p-4 text-white h-100 d-flex flex-column justify-content-between virtual-card">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center gap-2">
+              <div class="rounded-circle d-flex align-items-center justify-content-center text-white"
+                style="background-color: var(--gt-primary-active); width: 24px; height: 24px;">
+                <i class="bi bi-compass" style="font-size: 0.75rem;"></i>
+              </div>
+              <span class="fw-semibold small">GlobeTrotter</span>
+            </div>
+            <i class="bi bi-wifi fs-5 text-secondary"></i>
+          </div>
+
+          <div class="small text-muted mb-1" style="font-size: 0.75rem;">Cardholder</div>
+          <div class="fw-medium mb-3">Alex Mercer</div>
+
+          <div class="small text-muted mb-1" style="font-size: 0.75rem;">Card Number</div>
+          <div class="font-monospace text-light mb-3" style="letter-spacing: 2px;">•••• •••• •••• 4821</div>
+        </div>
+
+        <div>
+          <div class="d-flex justify-content-between align-items-end mb-3">
+            <div>
+              <div class="small text-muted" style="font-size: 0.75rem;">Cash-back Miles</div>
+              <div class="fs-4 fw-bold text-white">2,480 <span class="fs-6 fw-normal text-muted">mi</span></div>
+            </div>
+            <span class="badge rounded-pill px-2 py-1"
+              style="background-color: rgba(13, 148, 136, 0.2); color: #2dd4bf; font-size: 0.7rem;">Live •
+              2.5%</span>
+          </div>
+
+          <div
+            class="d-flex justify-content-between pt-2 border-top border-secondary border-opacity-25 small text-muted"
+            style="font-size: 0.75rem;">
+            <a href="#" class="text-decoration-none text-light opacity-75"><i
+                class="bi bi-box-arrow-up-right me-1"></i>Redeem</a>
+            <a href="#" class="text-decoration-none text-light opacity-75"><i
+                class="bi bi-file-text me-1"></i>Statement</a>
+            <a href="#" class="text-decoration-none text-light opacity-75"><i class="bi bi-lock me-1"></i>Freeze</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h6 class="fw-bold mb-0">Recent Trips</h6>
+      <a href="my_itineraries.html" onclick="parent.loadModule('pages/my_itineraries.html'); return false;"
+        class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active); font-size: 0.8rem;">View
+        all</a>
+    </div>
+
+    <div class="d-flex flex-column gap-2">
+      <div class="trip-card-compact d-flex align-items-center gap-3">
+        <div class="position-relative">
+          <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=300&auto=format&fit=crop&q=80"
+            alt="Tokyo" class="trip-thumb-sm">
+          <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
+            style="font-size: 0.65rem; padding: 2px 6px;">
+            Tokyo
+          </span>
+        </div>
+
+        <div class="flex-grow-1 min-w-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <h6 class="fw-bold mb-0 text-truncate small">Autumn in Tokyo</h6>
+            <span class="badge rounded-pill fw-medium"
+              style="background-color: #ccfbf1; color: var(--gt-primary-active); font-size: 0.65rem;">85%
+              planned</span>
+          </div>
+
+          <div class="text-muted small mb-2" style="font-size: 0.75rem;">
+            <i class="bi bi-calendar3 me-1"></i>Oct 12 – Oct 20, 2026
+          </div>
+
+          <div class="progress mb-2" style="height: 4px;">
+            <div class="progress-bar" style="width: 85%; background-color: var(--gt-primary-active);"></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
+            <span><i class="bi bi-moon me-1"></i>8 nights</span>
+            <span><i class="bi bi-pin-map me-1"></i>14 spots</span>
+            <span class="fw-semibold text-dark">$1,240</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trip-card-compact d-flex align-items-center gap-3">
+        <div class="position-relative">
+          <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&auto=format&fit=crop&q=80"
+            alt="Amalfi" class="trip-thumb-sm">
+          <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
+            style="font-size: 0.65rem; padding: 2px 6px;">
+            Italy
+          </span>
+        </div>
+
+        <div class="flex-grow-1 min-w-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <h6 class="fw-bold mb-0 text-truncate small">Amalfi Road Trip</h6>
+            <span class="badge rounded-pill fw-medium"
+              style="background-color: #fef3c7; color: var(--gt-secondary); font-size: 0.65rem;">40%
+              planned</span>
+          </div>
+
+          <div class="text-muted small mb-2" style="font-size: 0.75rem;">
+            <i class="bi bi-calendar3 me-1"></i>Sep 4 – Sep 11, 2026
+          </div>
+
+          <div class="progress mb-2" style="height: 4px;">
+            <div class="progress-bar" style="width: 40%; background-color: var(--gt-secondary);"></div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
+            <span><i class="bi bi-moon me-1"></i>7 nights</span>
+            <span><i class="bi bi-pin-map me-1"></i>6 spots</span>
+            <span class="fw-semibold text-dark">$980</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+      <div>
+        <h5 class="fw-bold mb-1">Budget Overview</h5>
+        <p class="text-muted small mb-3">Tokyo trip allocation</p>
+        <div class="position-relative d-flex align-items-center justify-content-center my-3" style="height: 180px;">
+          <canvas id="budgetDonutChart"></canvas>
+          <div class="position-absolute text-center">
+            <span class="text-muted small d-block" style="font-size: 0.75rem;">Total</span>
+            <span class="fs-5 fw-bold text-dark">$1,240</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column gap-2 small">
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="d-flex align-items-center gap-2 text-muted">
+            <span class="rounded-circle d-inline-block"
+              style="width: 10px; height: 10px; background-color: #0d9488;"></span>
+            Stay
+          </span>
+          <span class="fw-bold text-dark">$720</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="d-flex align-items-center gap-2 text-muted">
+            <span class="rounded-circle d-inline-block"
+              style="width: 10px; height: 10px; background-color: #f59e0b;"></span>
+            Transport
+          </span>
+          <span class="fw-bold text-dark">$310</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="d-flex align-items-center gap-2 text-muted">
+            <span class="rounded-circle d-inline-block"
+              style="width: 10px; height: 10px; background-color: #0ea5e9;"></span>
+            Food
+          </span>
+          <span class="fw-bold text-dark">$210</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="m-5 mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="fw-bold mb-0">Trending Destinations</h5>
+      <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active);">Explore
+        all</a>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="destination-card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80"
+            alt="Kyoto Bamboo Forest">
+          <div class="destination-overlay">
+            <h6 class="fw-bold mb-1">Kyoto Bamboo Forest</h6>
+            <span class="small text-light opacity-75">Flights from $640 · 5-day avg.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="destination-card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop&q=80"
+            alt="Santorini Sunset">
+          <div class="destination-overlay">
+            <h6 class="fw-bold mb-1">Santorini Sunset</h6>
+            <span class="small text-light opacity-75">Flights from $820 · 7-day avg.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="destination-card shadow-sm">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80"
+            alt="Banff National Park">
+          <div class="destination-overlay">
+            <h6 class="fw-bold mb-1">Banff National Park</h6>
+            <span class="small text-light opacity-75">Flights from $510 · 6-day avg.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const durationSlider = document.getElementById("durationSlider");
+    const durationValue = document.getElementById("durationValue");
+    const projectedCost = document.getElementById("projectedCost");
+
+    if (durationSlider) {
+      durationSlider.addEventListener("input", function () {
         const days = Number(this.value);
         durationValue.textContent = days + (days === 1 ? " day" : " days");
         projectedCost.textContent = "$" + (days * 120 + 10).toLocaleString();
-    });
-}
+      });
+    }
 
-const spendCanvas = document.getElementById("spendAnalyticsChart");
+    const spendCanvas = document.getElementById("spendAnalyticsChart");
 
-if (spendCanvas) {
-    new Chart(spendCanvas, {
+    if (spendCanvas) {
+      new Chart(spendCanvas, {
         type: "line",
         data: {
-            labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"],
-            datasets: [
-                {
-                    label: "Budget",
-                    data: [800,1000,900,1400,1200,1600,1500,1800,1700,2000],
-                    borderColor: "#0d9488",
-                    backgroundColor: "rgba(13,148,136,.08)",
-                    borderWidth: 2,
-                    tension: .4,
-                    fill: true,
-                    pointRadius: 3
-                },
-                {
-                    label: "Actual",
-                    data: [700,900,1100,1200,1300,1400,1700,1600,1800,1900],
-                    borderColor: "#d97706",
-                    borderWidth: 2,
-                    tension: .4,
-                    fill: false,
-                    pointRadius: 3
-                }
-            ]
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+          datasets: [
+            {
+              label: "Budget",
+              data: [800, 1000, 900, 1400, 1200, 1600, 1500, 1800, 1700, 2000],
+              borderColor: "#0d9488",
+              backgroundColor: "rgba(13,148,136,.08)",
+              borderWidth: 2,
+              tension: .4,
+              fill: true,
+              pointRadius: 3
+            },
+            {
+              label: "Actual",
+              data: [700, 900, 1100, 1200, 1300, 1400, 1700, 1600, 1800, 1900],
+              borderColor: "#d97706",
+              borderWidth: 2,
+              tension: .4,
+              fill: false,
+              pointRadius: 3
+            }
+          ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                y: { beginAtZero: true, grid: { color: "#edf0f5" } },
-                x: { grid: { display: false } }
-            }
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: "#edf0f5" } },
+            x: { grid: { display: false } }
+          }
         }
-    });
-}
+      });
+    }
 
-const budgetCanvas = document.getElementById("budgetDonutChart");
+    const budgetCanvas = document.getElementById("budgetDonutChart");
 
-if (budgetCanvas) {
-    new Chart(budgetCanvas, {
+    if (budgetCanvas) {
+      new Chart(budgetCanvas, {
         type: "doughnut",
         data: {
-            labels: ["Stay", "Transport", "Food"],
-            datasets: [{
-                data: [720, 310, 210],
-                backgroundColor: ["#0d9488", "#f59e0b", "#0ea5e9"],
-                borderWidth: 0
-            }]
+          labels: ["Stay", "Transport", "Food"],
+          datasets: [{
+            data: [720, 310, 210],
+            backgroundColor: ["#0d9488", "#f59e0b", "#0ea5e9"],
+            borderWidth: 0
+          }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: "72%",
-            plugins: { legend: { display: false } }
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: "72%",
+          plugins: { legend: { display: false } }
         }
-    });
-}
-</script>
+      });
+    }
+  </script>
+  <script src="js/auth.js"></script>
 </body>
+
 </html>
