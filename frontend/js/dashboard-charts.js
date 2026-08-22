@@ -57,7 +57,13 @@ function renderSpendAnalytics(data) {
         x: { grid: { display: false } },
         y: {
           grid: { color: '#edf0f5' },
-          ticks: { callback: (v) => `$${v}` }
+          ticks: {
+            callback: (v) => {
+              const preferences = JSON.parse(localStorage.getItem('gt_preferences') || '{}');
+              const symbols = { USD: '$', EUR: '€', JPY: '¥', GBP: '£' };
+              return `${symbols[preferences.currency || 'USD'] || '$'}${v}`;
+            }
+          }
         }
       }
     }
