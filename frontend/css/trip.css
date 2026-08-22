@@ -1,0 +1,314 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f9f8f4;
+    color: #111827;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.trip-card {
+    width: 100%;
+    max-width: 615px;
+
+    padding: 36px 38px;
+
+    background: #fff;
+
+    border: 1px solid #edf0f5;
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.heading h1 {
+    margin: 0 0 7px;
+
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.heading p {
+    margin: 0;
+
+    color: #6b7280;
+    font-size: 13px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+label span {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+.form-control {
+    height: 39px;
+
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+
+    padding: 8px 12px;
+
+    color: #374151;
+    font-size: 12px;
+
+    box-shadow: none !important;
+}
+
+.form-control:focus {
+    border-color: #0f766e;
+
+    box-shadow:
+        0 0 0 2px rgba(15, 118, 110, 0.08) !important;
+}
+
+.form-control::placeholder {
+    color: #a1a7b0;
+}
+
+textarea.form-control {
+    height: 100px;
+    resize: none;
+
+    padding: 12px;
+}
+
+.date-box {
+    position: relative;
+}
+
+.date-box i {
+    position: absolute;
+
+    left: 10px;
+    top: 12px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    z-index: 2;
+}
+
+.date-box .form-control {
+    padding-left: 30px;
+}
+
+
+/* Upload */
+
+.upload-box {
+    height: 118px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 2px dashed #dfe5eb;
+    border-radius: 10px;
+
+    background: #fafbfc;
+
+    cursor: pointer;
+}
+
+.upload-box:hover {
+    border-color: #0f766e;
+    background: #f0fdfa;
+}
+
+.upload-box input {
+    display: none;
+}
+
+.upload-box i {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+    border-radius: 50%;
+
+    color: #94a3b8;
+}
+
+.upload-box strong {
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.upload-box small {
+    color: #9ca3af;
+    font-size: 9px;
+}
+
+
+/* Privacy */
+
+.privacy-box {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 10px 14px;
+
+    background: #fafbfc;
+
+    border: 1px solid #edf0f5;
+    border-radius: 10px;
+}
+
+.privacy-info {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.privacy-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+    color: #0f766e;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+}
+
+.privacy-info strong {
+    display: block;
+
+    color: #374151;
+    font-size: 11px;
+}
+
+.privacy-info p {
+    margin: 2px 0 0;
+
+    color: #9ca3af;
+    font-size: 9px;
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.form-check-input:checked {
+    background-color: #0f766e;
+    border-color: #0f766e;
+}
+
+
+/* Buttons */
+
+.discard-btn,
+.create-btn {
+    height: 42px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.discard-btn {
+    background: #fff;
+
+    border: 1px solid #edf0f5;
+
+    color: #4b5563;
+}
+
+.discard-btn:hover {
+    background: #f9fafb;
+}
+
+.create-btn {
+    border: none;
+
+    background: #0f766e;
+
+    color: #fff;
+
+    box-shadow:
+        0 3px 8px rgba(15, 118, 110, 0.15);
+}
+
+.create-btn:hover {
+    background: #0d9488;
+}
+
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    .page {
+        padding: 10px;
+    }
+
+    .trip-card {
+        padding: 25px 18px;
+        border-radius: 16px;
+    }
+
+    .heading {
+        margin-bottom: 25px;
+    }
+
+    .heading h1 {
+        font-size: 23px;
+    }
+
+    .heading p {
+        font-size: 12px;
+    }
+
+    .upload-box {
+        height: 110px;
+    }
+}
