@@ -34,7 +34,7 @@
                 <i class="bi bi-grid-fill"></i>
                 <span>Dashboard</span>
               </a>
-              <a href="my_itineraries.html" class="nav-link-gt">
+              <a href="pages/my_itineraries.html" class="nav-link-gt">
                 <i class="bi bi-map"></i>
                 <span>My Itineraries</span>
               </a>
@@ -115,7 +115,7 @@
               <span class="fw-semibold small d-none d-sm-inline">Alex Mercer</span>
             </div>
 
-            <a href="plan_trip.html"
+            <a href="pages/plan_trip.html"
               class="btn text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm"
               style="background-color: var(--gt-secondary); border: none;">
               <i class="bi bi-plus-lg"></i>
@@ -294,178 +294,170 @@
         </div>
 
         <div class="row g-4 mb-4">
-          <div class="col-12 col-xl-8">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h6 class="fw-bold mb-0">Recent Trips</h6>
-              <a href="my_itineraries.html" class="text-decoration-none small fw-semibold"
-                style="color: var(--gt-primary-active); font-size: 0.8rem;">View all</a>
-            </div>
-
-            <div class="d-flex flex-column gap-2">
-              <div class="trip-card-compact d-flex align-items-center gap-3">
-                <div class="position-relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=300&auto=format&fit=crop&q=80"
-                    alt="Tokyo" class="trip-thumb-sm">
-                  <span
-                    class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
-                    style="font-size: 0.65rem; padding: 2px 6px;">
-                    Tokyo
-                  </span>
-                </div>
-
-                <div class="flex-grow-1 min-w-0">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <h6 class="fw-bold mb-0 text-truncate small">Autumn in Tokyo</h6>
-                    <span class="badge rounded-pill fw-medium"
-                      style="background-color: #ccfbf1; color: var(--gt-primary-active); font-size: 0.65rem;">85%
-                      planned</span>
-                  </div>
-
-                  <div class="text-muted small mb-2" style="font-size: 0.75rem;">
-                    <i class="bi bi-calendar3 me-1"></i>Oct 12 – Oct 20, 2026
-                  </div>
-
-                  <div class="progress mb-2" style="height: 4px;">
-                    <div class="progress-bar" style="width: 85%; background-color: var(--gt-primary-active);"></div>
-                  </div>
-
-                  <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
-                    <span><i class="bi bi-moon me-1"></i>8 nights</span>
-                    <span><i class="bi bi-pin-map me-1"></i>14 spots</span>
-                    <span class="fw-semibold text-dark">$1,240</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="trip-card-compact d-flex align-items-center gap-3">
-                <div class="position-relative">
-                  <img
-                    src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&auto=format&fit=crop&q=80"
-                    alt="Amalfi" class="trip-thumb-sm">
-                  <span
-                    class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
-                    style="font-size: 0.65rem; padding: 2px 6px;">
-                    Italy
-                  </span>
-                </div>
-
-                <div class="flex-grow-1 min-w-0">
-                  <div class="d-flex justify-content-between align-items-center mb-1">
-                    <h6 class="fw-bold mb-0 text-truncate small">Amalfi Road Trip</h6>
-                    <span class="badge rounded-pill fw-medium"
-                      style="background-color: #fef3c7; color: var(--gt-secondary); font-size: 0.65rem;">40%
-                      planned</span>
-                  </div>
-
-                  <div class="text-muted small mb-2" style="font-size: 0.75rem;">
-                    <i class="bi bi-calendar3 me-1"></i>Sep 4 – Sep 11, 2026
-                  </div>
-
-                  <div class="progress mb-2" style="height: 4px;">
-                    <div class="progress-bar" style="width: 40%; background-color: var(--gt-secondary);"></div>
-                  </div>
-
-                  <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
-                    <span><i class="bi bi-moon me-1"></i>7 nights</span>
-                    <span><i class="bi bi-pin-map me-1"></i>6 spots</span>
-                    <span class="fw-semibold text-dark">$980</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12 col-xl-4">
-            <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
-              <div>
-                <h5 class="fw-bold mb-1">Budget Overview</h5>
-                <p class="text-muted small mb-3">Tokyo trip allocation</p>
-                <div class="position-relative d-flex align-items-center justify-content-center my-3"
-                  style="height: 180px;">
-                  <canvas id="budgetDonutChart"></canvas>
-                  <div class="position-absolute text-center">
-                    <span class="text-muted small d-block" style="font-size: 0.75rem;">Total</span>
-                    <span class="fs-5 fw-bold text-dark">$1,240</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex flex-column gap-2 small">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="d-flex align-items-center gap-2 text-muted">
-                    <span class="rounded-circle d-inline-block"
-                      style="width: 10px; height: 10px; background-color: #0d9488;"></span>
-                    Stay
-                  </span>
-                  <span class="fw-bold text-dark">$720</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="d-flex align-items-center gap-2 text-muted">
-                    <span class="rounded-circle d-inline-block"
-                      style="width: 10px; height: 10px; background-color: #f59e0b;"></span>
-                    Transport
-                  </span>
-                  <span class="fw-bold text-dark">$310</span>
-                </div>
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="d-flex align-items-center gap-2 text-muted">
-                    <span class="rounded-circle d-inline-block"
-                      style="width: 10px; height: 10px; background-color: #0ea5e9;"></span>
-                    Food
-                  </span>
-                  <span class="fw-bold text-dark">$210</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mb-4">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold mb-0">Trending Destinations</h5>
-            <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active);">Explore
-              all</a>
+            <h6 class="fw-bold mb-0">Recent Trips</h6>
+            <a href="pages/my_itineraries.html" class="text-decoration-none small fw-semibold"
+              style="color: var(--gt-primary-active); font-size: 0.8rem;">View all</a>
           </div>
 
-          <div class="row g-4">
-            <div class="col-12 col-md-4">
-              <div class="destination-card shadow-sm">
-                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80"
-                  alt="Kyoto Bamboo Forest">
-                <div class="destination-overlay">
-                  <h6 class="fw-bold mb-1">Kyoto Bamboo Forest</h6>
-                  <span class="small text-light opacity-75">Flights from $640 · 5-day avg.</span>
+          <div class="d-flex flex-column gap-2">
+            <div class="trip-card-compact d-flex align-items-center gap-3">
+              <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=300&auto=format&fit=crop&q=80"
+                  alt="Tokyo" class="trip-thumb-sm">
+                <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
+                  style="font-size: 0.65rem; padding: 2px 6px;">
+                  Tokyo
+                </span>
+              </div>
+
+              <div class="flex-grow-1 min-w-0">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h6 class="fw-bold mb-0 text-truncate small">Autumn in Tokyo</h6>
+                  <span class="badge rounded-pill fw-medium"
+                    style="background-color: #ccfbf1; color: var(--gt-primary-active); font-size: 0.65rem;">85%
+                    planned</span>
+                </div>
+
+                <div class="text-muted small mb-2" style="font-size: 0.75rem;">
+                  <i class="bi bi-calendar3 me-1"></i>Oct 12 – Oct 20, 2026
+                </div>
+
+                <div class="progress mb-2" style="height: 4px;">
+                  <div class="progress-bar" style="width: 85%; background-color: var(--gt-primary-active);"></div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
+                  <span><i class="bi bi-moon me-1"></i>8 nights</span>
+                  <span><i class="bi bi-pin-map me-1"></i>14 spots</span>
+                  <span class="fw-semibold text-dark">$1,240</span>
                 </div>
               </div>
             </div>
 
-            <div class="col-12 col-md-4">
-              <div class="destination-card shadow-sm">
-                <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop&q=80"
-                  alt="Santorini Sunset">
-                <div class="destination-overlay">
-                  <h6 class="fw-bold mb-1">Santorini Sunset</h6>
-                  <span class="small text-light opacity-75">Flights from $820 · 7-day avg.</span>
+            <div class="trip-card-compact d-flex align-items-center gap-3">
+              <div class="position-relative">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&auto=format&fit=crop&q=80"
+                  alt="Amalfi" class="trip-thumb-sm">
+                <span class="badge bg-dark bg-opacity-75 text-white position-absolute bottom-0 start-0 m-1 rounded-pill"
+                  style="font-size: 0.65rem; padding: 2px 6px;">
+                  Italy
+                </span>
+              </div>
+
+              <div class="flex-grow-1 min-w-0">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h6 class="fw-bold mb-0 text-truncate small">Amalfi Road Trip</h6>
+                  <span class="badge rounded-pill fw-medium"
+                    style="background-color: #fef3c7; color: var(--gt-secondary); font-size: 0.65rem;">40%
+                    planned</span>
+                </div>
+
+                <div class="text-muted small mb-2" style="font-size: 0.75rem;">
+                  <i class="bi bi-calendar3 me-1"></i>Sep 4 – Sep 11, 2026
+                </div>
+
+                <div class="progress mb-2" style="height: 4px;">
+                  <div class="progress-bar" style="width: 40%; background-color: var(--gt-secondary);"></div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center text-muted" style="font-size: 0.72rem;">
+                  <span><i class="bi bi-moon me-1"></i>7 nights</span>
+                  <span><i class="bi bi-pin-map me-1"></i>6 spots</span>
+                  <span class="fw-semibold text-dark">$980</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="fw-bold mb-1">Budget Overview</h5>
+              <p class="text-muted small mb-3">Tokyo trip allocation</p>
+              <div class="position-relative d-flex align-items-center justify-content-center my-3"
+                style="height: 180px;">
+                <canvas id="budgetDonutChart"></canvas>
+                <div class="position-absolute text-center">
+                  <span class="text-muted small d-block" style="font-size: 0.75rem;">Total</span>
+                  <span class="fs-5 fw-bold text-dark">$1,240</span>
                 </div>
               </div>
             </div>
 
-            <div class="col-12 col-md-4">
-              <div class="destination-card shadow-sm">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80"
-                  alt="Banff National Park">
-                <div class="destination-overlay">
-                  <h6 class="fw-bold mb-1">Banff National Park</h6>
-                  <span class="small text-light opacity-75">Flights from $510 · 6-day avg.</span>
-                </div>
+            <div class="d-flex flex-column gap-2 small">
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="d-flex align-items-center gap-2 text-muted">
+                  <span class="rounded-circle d-inline-block"
+                    style="width: 10px; height: 10px; background-color: #0d9488;"></span>
+                  Stay
+                </span>
+                <span class="fw-bold text-dark">$720</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="d-flex align-items-center gap-2 text-muted">
+                  <span class="rounded-circle d-inline-block"
+                    style="width: 10px; height: 10px; background-color: #f59e0b;"></span>
+                  Transport
+                </span>
+                <span class="fw-bold text-dark">$310</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="d-flex align-items-center gap-2 text-muted">
+                  <span class="rounded-circle d-inline-block"
+                    style="width: 10px; height: 10px; background-color: #0ea5e9;"></span>
+                  Food
+                </span>
+                <span class="fw-bold text-dark">$210</span>
               </div>
             </div>
           </div>
         </div>
-
-      </main>
     </div>
+
+    <div class="mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">Trending Destinations</h5>
+        <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active);">Explore
+          all</a>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-12 col-md-4">
+          <div class="destination-card shadow-sm">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&auto=format&fit=crop&q=80"
+              alt="Kyoto Bamboo Forest">
+            <div class="destination-overlay">
+              <h6 class="fw-bold mb-1">Kyoto Bamboo Forest</h6>
+              <span class="small text-light opacity-75">Flights from $640 · 5-day avg.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="destination-card shadow-sm">
+            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&auto=format&fit=crop&q=80"
+              alt="Santorini Sunset">
+            <div class="destination-overlay">
+              <h6 class="fw-bold mb-1">Santorini Sunset</h6>
+              <span class="small text-light opacity-75">Flights from $820 · 7-day avg.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="destination-card shadow-sm">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&auto=format&fit=crop&q=80"
+              alt="Banff National Park">
+            <div class="destination-overlay">
+              <h6 class="fw-bold mb-1">Banff National Park</h6>
+              <span class="small text-light opacity-75">Flights from $510 · 6-day avg.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </main>
+  </div>
   </div>
 
   <script src="js/bootstrap.bundle.min.js"></script>
