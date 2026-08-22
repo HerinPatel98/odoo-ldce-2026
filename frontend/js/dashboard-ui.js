@@ -83,3 +83,49 @@ window.addEventListener('storage', (event) => {
     }
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('globalSearchInput');
+  const dropdown = document.getElementById('searchResultsDropdown');
+
+  // Toggle dropdown on input focus/blur
+  searchInput?.addEventListener('focus', () => dropdown?.classList.remove('d-none'));
+  
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-command-wrapper')) {
+      dropdown?.classList.add('d-none');
+    }
+  });
+
+  // Global ⌘K / Ctrl+K Hotkey Listener
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput?.focus();
+      dropdown?.classList.remove('d-none');
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const label = document.getElementById('selectedDateLabel');
+  const dateOptions = document.querySelectorAll('.date-option-item[data-range]');
+
+  dateOptions.forEach(option => {
+    option.addEventListener('click', function () {
+      // 1. Remove active state from all items
+      dateOptions.forEach(opt => {
+        opt.classList.remove('active');
+        opt.querySelector('.check-icon')?.classList.add('d-none');
+      });
+
+      // 2. Add active state to clicked item
+      this.classList.add('active');
+      this.querySelector('.check-icon')?.classList.remove('d-none');
+
+      // 3. Update main button text
+      const newRange = this.getAttribute('data-range');
+      if (label) label.textContent = newRange;
+    });
+  });
+});

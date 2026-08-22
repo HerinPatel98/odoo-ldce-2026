@@ -60,6 +60,20 @@
 </head>
 <body class="p-4 p-lg-5" style="background-color: var(--gt-bg); min-height: 100vh;">
 
+  <!-- Top Navigation & Back Action -->
+  <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+    <button type="button" class="btn btn-white bg-white border rounded-pill px-3 py-2 d-flex align-items-center gap-2 small fw-semibold text-dark shadow-sm" onclick="history.back()">
+      <i class="bi bi-arrow-left"></i>
+      <span>Back</span>
+    </button>
+
+    <div class="d-flex align-items-center gap-2">
+      <span class="badge bg-light text-muted border rounded-pill px-3 py-2 font-monospace" style="font-size: 0.75rem;">
+        <i class="bi bi-shield-lock-fill text-success me-1"></i>Secure Checkout
+      </span>
+    </div>
+  </div>
+
   <!-- Header -->
   <div class="text-center max-w-lg mx-auto mb-5">
     <span class="badge rounded-pill px-3 py-1 fw-bold text-white mb-3" style="background-color: var(--gt-secondary);">GLOBETROTTER PASS</span>
@@ -110,7 +124,7 @@
             </li>
             <li class="d-flex align-items-center gap-2 text-muted">
               <i class="bi bi-x-circle feature-icon-cross"></i>
-              <span class="text-decoration-line-through">Offline PDF & CSV Export</span>
+              <span class="text-decoration-line-through">Offline PDF &amp; CSV Export</span>
             </li>
             <li class="d-flex align-items-center gap-2 text-muted">
               <i class="bi bi-x-circle feature-icon-cross"></i>
