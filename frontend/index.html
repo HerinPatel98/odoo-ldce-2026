@@ -46,6 +46,10 @@
                 <i class="bi bi-wallet2"></i>
                 <span>Travel Budget</span>
               </a>
+              <a href="login.html" class="nav-link-gt text-danger opacity-75">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Log Out</span>
+              </a>
             </nav>
           </div>
 
@@ -109,10 +113,44 @@
               <span>Export CSV</span>
             </button>
 
-            <div class="d-flex align-items-center gap-2 ps-2">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-                alt="Alex Mercer" class="rounded-circle object-fit-cover" width="36" height="36">
-              <span class="fw-semibold small d-none d-sm-inline">Alex Mercer</span>
+            <div class="dropdown">
+              <button class="btn p-0 border-0 d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                  alt="Alex Mercer" class="rounded-circle object-fit-cover border border-2 border-white shadow-sm"
+                  width="38" height="38">
+                <div class="d-none d-sm-block text-start">
+                  <span class="fw-semibold small d-block text-dark lh-1">Alex Mercer</span>
+                  <span class="text-muted" style="font-size: 0.7rem;">Free Tier</span>
+                </div>
+                <i class="bi bi-chevron-down text-muted small ms-1"></i>
+              </button>
+
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-4 p-2 mt-2"
+                style="min-width: 200px;">
+                <li>
+                  <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-person text-muted"></i>
+                    <span>My Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2 small d-flex align-items-center gap-2" href="#">
+                    <i class="bi bi-gear text-muted"></i>
+                    <span>Preferences</span>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider my-1">
+                </li>
+                <li>
+                  <a class="dropdown-item rounded-3 py-2 small text-danger d-flex align-items-center gap-2"
+                    href="login.html">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span class="fw-medium">Sign Out</span>
+                  </a>
+                </li>
+              </ul>
             </div>
 
             <a href="pages/plan_trip.html"
@@ -413,7 +451,7 @@
         </div>
     </div>
 
-    <div class="mb-4">
+    <div class="m-5 mb-4">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold mb-0">Trending Destinations</h5>
         <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--gt-primary-active);">Explore
