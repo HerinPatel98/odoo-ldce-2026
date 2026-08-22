@@ -1,0 +1,501 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f3fa;
+    color: #18233d;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.auth-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 30px 15px;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.auth-page > .container {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.brand {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 800;
+    color: #18233d;
+}
+
+.logo span {
+    color: #7138bd;
+}
+
+.brand p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 15px;
+}
+
+
+/* =========================================
+   CARD ROW
+========================================= */
+
+.auth-page .row.justify-content-center {
+    width: 100%;
+    margin: 0;
+}
+
+
+/* =========================================
+   CARD COLUMN
+========================================= */
+
+.auth-page .auth-column {
+    width: 100%;
+    max-width: 480px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =========================================
+   AUTH CARD
+========================================= */
+
+.auth-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    padding: 40px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e8e8e8;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.auth-card h1 {
+    text-align: center;
+
+    margin: 0 0 8px;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #18233d;
+}
+
+.subtitle {
+    text-align: center;
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 15px;
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+
+    background: #7138bd;
+
+    border-radius: 10px;
+
+    margin: 18px auto 30px;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.auth-card form {
+    width: 100%;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-label {
+    display: block;
+
+    width: 100%;
+
+    margin-bottom: 7px;
+
+    color: #30384f;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.input-box {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #dcdcdc;
+
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    padding: 0 12px;
+}
+
+.input-box:focus-within {
+    border-color: #7138bd;
+
+    box-shadow:
+        0 0 0 3px rgba(113, 56, 189, 0.10);
+}
+
+
+/* Icon */
+
+.input-box > span {
+    flex: 0 0 30px;
+
+    text-align: center;
+
+    color: #7138bd;
+}
+
+
+/* Input */
+
+.input-box .form-control {
+    flex: 1;
+
+    width: 100%;
+
+    height: 45px;
+
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
+
+    padding: 0 5px;
+
+    font-size: 14px;
+}
+
+
+/* Eye button */
+
+.show-password {
+    flex: 0 0 auto;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    padding: 5px;
+}
+
+.show-password:hover {
+    color: #7138bd;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.primary-btn {
+    width: 100% !important;
+    height: 50px;
+
+    border: none !important;
+    border-radius: 9px;
+
+    background: #7138bd !important;
+
+    color: white !important;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.primary-btn:hover {
+    background: #5d2da2 !important;
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+.auth-link,
+.bottom-text a,
+.terms a {
+    color: #7138bd;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.auth-link:hover,
+.bottom-text a:hover,
+.terms a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   DIVIDER
+========================================= */
+
+.divider {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 22px 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    height: 1px;
+
+    background: #e0e0e0;
+
+    flex: 1;
+}
+
+
+/* =========================================
+   SOCIAL BUTTON
+========================================= */
+
+.social-btn {
+    width: 100%;
+
+    height: 45px;
+
+    background: white !important;
+
+    border: 1px solid #ddd !important;
+
+    border-radius: 8px !important;
+
+    color: #333;
+}
+
+.social-btn:hover {
+    border-color: #7138bd !important;
+}
+
+
+/* =========================================
+   BOTTOM TEXT
+========================================= */
+
+.bottom-text {
+    text-align: center;
+
+    margin: 22px 0 0;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   PASSWORD STRENGTH
+========================================= */
+
+.password-strength {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    color: #777;
+
+    font-size: 11px;
+}
+
+.strength-bars {
+    display: flex;
+
+    gap: 4px;
+}
+
+.strength-bars i {
+    width: 25px;
+    height: 4px;
+
+    background: #ddd;
+
+    border-radius: 5px;
+}
+
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+    margin-top: 25px;
+
+    color: #555;
+}
+
+.features div {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.features b {
+    color: #7138bd;
+
+    font-size: 14px;
+}
+
+.features small {
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .auth-page {
+        padding: 25px 15px;
+    }
+
+    .auth-card {
+        padding: 30px;
+    }
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .auth-card h1 {
+        font-size: 27px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+
+    .auth-page {
+        padding: 20px 12px;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .brand p {
+        font-size: 13px;
+    }
+
+    .auth-card {
+        padding: 25px 18px;
+
+        border-radius: 14px;
+    }
+
+    .auth-card h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .features {
+        display: none;
+    }
+}
