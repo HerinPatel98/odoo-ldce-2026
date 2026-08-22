@@ -23,11 +23,11 @@
             </a>
             <div>
                 <div class="d-flex align-items-center gap-2">
-                    <h4 class="fw-bold mb-0 gt-brand">Autumn in Tokyo</h4>
+                    <h4 id="tripTitle" class="fw-bold mb-0 gt-brand">Autumn in Tokyo</h4>
                     <span class="badge rounded-pill fw-bold text-white"
                         style="background-color: var(--gt-primary-active); font-size: 0.7rem;">CONFIRMED</span>
                 </div>
-                <span class="text-muted small">Oct 12 – Oct 20, 2026 · 8 Days, 7 Nights · Tokyo & Hakone</span>
+                <span id="tripMeta" class="text-muted small">Oct 12 – Oct 20, 2026 · 8 Days, 7 Nights · Tokyo & Hakone</span>
             </div>
         </div>
 
@@ -82,7 +82,7 @@
                 <div>
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-light text-secondary border rounded-pill px-2 py-1 font-monospace"
+                            <span id="airportRoute" class="badge bg-light text-secondary border rounded-pill px-2 py-1 font-monospace"
                                 style="font-size: 0.75rem;">HND &bull; NRT</span>
                             <span class="text-muted small">&bull; 7 Nights</span>
                         </div>
@@ -100,8 +100,8 @@
                         </div>
                     </div>
 
-                    <h4 class="fw-bold mb-1 text-dark text-truncate">Autumn in Tokyo</h4>
-                    <p class="text-muted small mb-3">Modern skyscrapers, historic shrines, culinary journeys, and a
+                    <h4 id="coverTitle" class="fw-bold mb-1 text-dark text-truncate">Autumn in Tokyo</h4>
+                    <p id="tripDescription" class="text-muted small mb-3">Modern skyscrapers, historic shrines, culinary journeys, and a
                         scenic day trip to Hakone.</p>
                 </div>
 
@@ -109,13 +109,13 @@
                 <div class="d-flex flex-wrap align-items-center justify-content-between pt-2 border-top gap-2 text-muted small"
                     style="font-size: 0.78rem;">
                     <div class="d-flex align-items-center gap-3">
-                        <span><i class="bi bi-calendar3 me-1 text-dark"></i>Oct 12 – Oct 20, 2026</span>
-                        <span><i class="bi bi-geo-alt me-1 text-dark"></i>Tokyo, Japan</span>
+                        <span><i class="bi bi-calendar3 me-1 text-dark"></i><span id="tripDates">Oct 12 – Oct 20, 2026</span></span>
+                        <span><i class="bi bi-geo-alt me-1 text-dark"></i><span id="tripLocation">Tokyo, Japan</span></span>
                     </div>
 
                     <div class="d-flex align-items-center gap-2">
-                        <span class="fw-semibold text-dark">$1,240</span>
-                        <span class="text-muted">/ $1,500 budget</span>
+                        <span id="coverTotal" class="fw-semibold text-dark">$1,240</span>
+                        <span class="text-muted">/ <span id="coverBudget">$1,500</span> budget</span>
                     </div>
                 </div>
             </div>
@@ -245,25 +245,25 @@
                 <p class="text-muted small mb-3">Total confirmed bookings breakdown</p>
 
                 <div class="d-flex align-items-baseline gap-2 mb-3 pb-3 border-bottom">
-                    <span class="fs-3 fw-bold text-dark">$1,240</span>
-                    <span class="text-muted small">/ $1,500 target budget</span>
+                    <span id="summaryTotal" class="fs-3 fw-bold text-dark">$1,240</span>
+                    <span class="text-muted small">/ <span id="summaryBudget">$1,500</span> target budget</span>
                 </div>
 
                 <div class="d-flex flex-column gap-2 small">
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-muted"><i class="bi bi-building me-2"
                                 style="color: var(--gt-primary-active);"></i>Stay (7 nights)</span>
-                        <span class="fw-bold text-dark">$720</span>
+                        <span class="fw-bold text-dark" data-expense-index="0">$720</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-muted"><i class="bi bi-train-front me-2 text-warning"></i>Transport & JR
                             Pass</span>
-                        <span class="fw-bold text-dark">$310</span>
+                        <span class="fw-bold text-dark" data-expense-index="1">$310</span>
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="text-muted"><i class="bi bi-ticket-perforated me-2 text-primary"></i>Tickets &
                             Tours</span>
-                        <span class="fw-bold text-dark">$210</span>
+                        <span class="fw-bold text-dark" data-expense-index="2">$210</span>
                     </div>
                 </div>
             </div>
@@ -275,21 +275,21 @@
 
                 <div class="d-flex flex-column gap-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check1" checked>
+                        <input class="form-check-input trip-check" type="checkbox" id="check1" data-checklist-index="0" checked>
                         <label class="form-check-label small text-dark" for="check1">Passport valid &gt; 6
                             months</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check2" checked>
+                        <input class="form-check-input trip-check" type="checkbox" id="check2" data-checklist-index="1" checked>
                         <label class="form-check-label small text-dark" for="check2">eSIM Data Roaming setup</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check3" checked>
+                        <input class="form-check-input trip-check" type="checkbox" id="check3" data-checklist-index="2" checked>
                         <label class="form-check-label small text-dark" for="check3">Suica / Pasmo IC Card on Apple
                             Wallet</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="check4">
+                        <input class="form-check-input trip-check" type="checkbox" id="check4" data-checklist-index="3">
                         <label class="form-check-label small text-dark" for="check4">Visit Japan Web QR code
                             generated</label>
                     </div>
@@ -311,17 +311,102 @@
 
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script>
-        document.getElementById('shareBtn')?.addEventListener('click', () => {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Autumn in Tokyo Itinerary',
-                    url: window.location.href
-                });
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Public itinerary link copied to clipboard!');
+        const apiBaseUrl = 'http://localhost:8000/api';
+        const tripSlug = new URLSearchParams(window.location.search).get('trip') || 'autumn-in-tokyo';
+        let checklist = [];
+
+        const currencySymbols = { USD: '$', EUR: '€', JPY: '¥', GBP: '£' };
+        const preferences = () => JSON.parse(localStorage.getItem('gt_preferences') || '{}');
+        const formatMoney = (amount) => {
+            const symbol = currencySymbols[preferences().currency || 'USD'] || '$';
+            return `${symbol}${Number(amount).toLocaleString()}`;
+        };
+        const formatDate = (dateValue) => {
+            const date = new Date(`${dateValue}T00:00:00`);
+            const format = preferences().dateFormat || 'MM/DD/YYYY';
+            if (format === 'DD/MM/YYYY') {
+                return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
             }
+            if (format === 'YYYY-MM-DD') return dateValue;
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        };
+
+        const setText = (id, value) => {
+            const element = document.getElementById(id);
+            if (element) element.textContent = value;
+        };
+
+        const renderTrip = (trip) => {
+            const startDate = formatDate(trip.start_date);
+            const endDate = formatDate(trip.end_date);
+            const days = Math.round((new Date(trip.end_date) - new Date(trip.start_date)) / 86400000);
+
+            setText('tripTitle', trip.title);
+            setText('coverTitle', trip.title);
+            setText('tripDescription', trip.description);
+            setText('airportRoute', trip.airport_route);
+            setText('tripDates', `${startDate} – ${endDate}`);
+            setText('tripLocation', trip.location);
+            setText('tripMeta', `${startDate} – ${endDate} · ${days} Days, ${days - 1} Nights · ${trip.location}`);
+            setText('coverTotal', formatMoney(trip.total_cost));
+            setText('coverBudget', formatMoney(trip.budget));
+            setText('summaryTotal', formatMoney(trip.total_cost));
+            setText('summaryBudget', formatMoney(trip.budget));
+
+            (trip.expenses || []).forEach((expense, index) => {
+                const element = document.querySelector(`[data-expense-index="${index}"]`);
+                if (element) element.textContent = formatMoney(expense.amount);
+            });
+
+            checklist = trip.checklist || [];
+            checklist.forEach((item, index) => {
+                const input = document.querySelector(`[data-checklist-index="${index}"]`);
+                const label = document.querySelector(`label[for="${input?.id}"]`);
+                if (input) input.checked = item.completed;
+                if (label) label.textContent = item.label;
+            });
+        };
+
+        const loadTrip = async () => {
+            try {
+                const response = await fetch(`${apiBaseUrl}/trips/${encodeURIComponent(tripSlug)}`, { credentials: 'include' });
+                if (!response.ok) throw new Error(`Trip request failed (${response.status})`);
+                const data = await response.json();
+                renderTrip(data.trip);
+            } catch (error) {
+                console.error('Unable to load trip:', error);
+            }
+        };
+
+        document.querySelectorAll('.trip-check').forEach((input) => {
+            input.addEventListener('change', async () => {
+                const index = Number(input.dataset.checklistIndex);
+                if (!checklist[index]) return;
+                checklist[index].completed = input.checked;
+                try {
+                    const response = await fetch(`${apiBaseUrl}/trips/${encodeURIComponent(tripSlug)}/checklist`, {
+                        method: 'PATCH',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ checklist })
+                    });
+                    if (!response.ok) throw new Error(`Checklist request failed (${response.status})`);
+                } catch (error) {
+                    input.checked = !input.checked;
+                    checklist[index].completed = input.checked;
+                    console.error('Unable to save checklist:', error);
+                }
+            });
         });
+
+        document.getElementById('shareBtn')?.addEventListener('click', async () => {
+            const shareData = { title: 'Autumn in Tokyo Itinerary', url: window.location.href };
+            if (navigator.share) return navigator.share(shareData);
+            await navigator.clipboard.writeText(window.location.href);
+            alert('Public itinerary link copied to clipboard!');
+        });
+
+        loadTrip();
     </script>
 </body>
 
