@@ -4,11 +4,14 @@
 GlobeTrotter/
 │
 ├── index.html                  # Dashboard (Analytics, projector, recent trips)
-├── login.html                  # Login & Signup screen
-├── my_itineraries.html         # My Trips Hub (Upcoming, Past, Drafts)
-├── plan_trip.html              # Plan New Trip (Metadata creation form)
-├── itinerary_builder.html      # Day-by-day Builder (Route, Timeline, Activity search)
-├── trip_view.html              # Public / Confirmed Itinerary View
+│
+├── pages/
+│   ├── register.html
+│   ├── login.html                  # Login & Signup screen
+│   ├── my_itineraries.html         # My Trips Hub (Upcoming, Past, Drafts)
+│   ├── plan_trip.html              # Plan New Trip (Metadata creation form)
+│   ├── itinerary_builder.html      # Day-by-day Builder (Route, Timeline, Activity search)
+│   └── trip_view.html              # Public / Confirmed Itinerary View
 │
 ├── css/
 │   ├── bootstrap.min.css       # Local Bootstrap 5.3 CSS
