@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — My Itineraries</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+
+  <div class="container-fluid p-0">
+    <div class="row g-0">
+
+      <aside class="col-12 col-md-3 col-xl-2 sidebar d-flex flex-column justify-content-between p-4">
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-5">
+            <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="background-color: var(--gt-primary-active); width: 34px; height: 34px;">
+              <i class="bi bi-compass fs-6"></i>
+            </div>
+            <span class="fs-5 gt-brand text-dark">GlobeTrotter</span>
+          </div>
+
+          <div class="mb-4">
+            <div class="text-uppercase text-muted fw-bold small mb-2" style="font-size: 0.7rem; letter-spacing: 0.05em;">Explore</div>
+            <nav class="d-flex flex-column gap-1">
+              <a href="../index.html" class="nav-link-gt">
+                <i class="bi bi-grid-fill"></i>
+                <span>Dashboard</span>
+              </a>
+              <a href="my_itineraries.html" class="nav-link-gt active">
+                <i class="bi bi-map"></i>
+                <span>My Itineraries</span>
+              </a>
+              <a href="#" class="nav-link-gt">
+                <i class="bi bi-bookmark"></i>
+                <span>Saved Places</span>
+              </a>
+              <a href="#" class="nav-link-gt">
+                <i class="bi bi-wallet2"></i>
+                <span>Travel Budget</span>
+              </a>
+            </nav>
+          </div>
+
+          <div class="mb-4">
+            <div class="text-uppercase text-muted fw-bold small mb-2" style="font-size: 0.7rem; letter-spacing: 0.05em;">Account</div>
+            <nav class="d-flex flex-column gap-1">
+              <a href="#" class="nav-link-gt">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+              </a>
+              <a href="#" class="nav-link-gt">
+                <i class="bi bi-headset"></i>
+                <span>Support</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="upgrade-box p-3 text-white">
+          <div class="mb-2">
+            <i class="bi bi-send-fill fs-4"></i>
+          </div>
+          <p class="small fw-medium mb-3">
+            Upgrade to Premium for unlimited itineraries & priority support.
+          </p>
+          <a href="#" class="btn btn-light btn-sm w-100 fw-semibold rounded-pill py-2 text-dark">
+            View Plans
+          </a>
+        </div>
+      </aside>
+
+      <main class="col-12 col-md-9 col-xl-10 p-4 p-lg-5">
+
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-5">
+          <div class="d-flex align-items-center gap-4">
+            <h3 class="fw-bold mb-0 gt-brand">My Trips</h3>
+            
+            <div class="d-inline-flex p-1 rounded-pill filter-tabs-wrapper" id="tripFilters">
+              <button class="filter-tab-btn active" data-filter="upcoming">Upcoming</button>
+              <button class="filter-tab-btn" data-filter="past">Past</button>
+              <button class="filter-tab-btn" data-filter="drafts">Drafts</button>
+            </div>
+          </div>
+
+          <a href="plan_trip.html" class="btn text-white rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary); border: none;">
+            <i class="bi bi-plus-lg"></i>
+            <span>New Trip</span>
+          </a>
+        </div>
+
+        <div class="row g-4" id="tripsContainer">
+
+          <div class="col-12 col-md-6 col-xl-4 trip-item" data-category="upcoming">
+            <div class="trip-card-full h-100 d-flex flex-column justify-content-between shadow-sm">
+              <div>
+                <div class="trip-card-hero">
+                  <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=600&auto=format&fit=crop&q=80" alt="Autumn in Tokyo">
+                  
+                  <div class="position-absolute top-0 start-0 m-3 d-flex align-items-center gap-2">
+                    <span class="badge rounded-pill text-white fw-bold" style="background-color: var(--gt-primary-active);">8 DAYS</span>
+                    <span class="badge rounded-pill bg-dark bg-opacity-75 text-white fw-semibold">UPCOMING</span>
+                  </div>
+                  
+                  <div class="dropdown position-absolute top-0 end-0 m-3">
+                    <button class="btn btn-sm btn-dark bg-opacity-50 text-white rounded-circle d-flex align-items-center justify-content-center p-0 border-0 dropdown-action-btn" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
+                      <li><a class="dropdown-item small" href="itinerary_builder.html"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
+                      <li><a class="dropdown-item small" href="#"><i class="bi bi-share me-2"></i>Share Link</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item small text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="p-4 pb-0">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h5 class="fw-bold mb-0">Autumn in Tokyo</h5>
+                    <span class="badge rounded-pill fw-semibold" style="background-color: #ccfbf1; color: var(--gt-primary-active);">85%</span>
+                  </div>
+                  <div class="text-muted small mb-3">
+                    <i class="bi bi-calendar3 me-1"></i>Oct 12 – Oct 20, 2026
+                  </div>
+                  <div class="progress mb-4" style="height: 5px;">
+                    <div class="progress-bar" style="width: 85%; background-color: var(--gt-primary-active);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 pt-0">
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                  <div class="d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80" alt="Avatar" class="rounded-circle border border-white avatar-stack-item" width="28" height="28">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=60&auto=format&fit=crop&q=80" alt="Avatar" class="rounded-circle border border-white avatar-stack-item" width="28" height="28">
+                    <span class="badge rounded-circle bg-light text-muted border border-white d-inline-flex align-items-center justify-content-center" style="width: 28px; height: 28px; font-size: 0.65rem;">+1</span>
+                  </div>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <a href="itinerary_builder.html" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
+                      <i class="bi bi-pencil text-dark"></i>
+                    </a>
+                    <a href="trip_view.html" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
+                      View Plan
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-4 trip-item" data-category="upcoming">
+            <div class="trip-card-full h-100 d-flex flex-column justify-content-between shadow-sm">
+              <div>
+                <div class="trip-card-hero">
+                  <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600&auto=format&fit=crop&q=80" alt="Amalfi Road Trip">
+                  
+                  <div class="position-absolute top-0 start-0 m-3 d-flex align-items-center gap-2">
+                    <span class="badge rounded-pill text-white fw-bold" style="background-color: var(--gt-primary-active);">7 DAYS</span>
+                    <span class="badge rounded-pill bg-dark bg-opacity-75 text-white fw-semibold">UPCOMING</span>
+                  </div>
+                  
+                  <div class="dropdown position-absolute top-0 end-0 m-3">
+                    <button class="btn btn-sm btn-dark bg-opacity-50 text-white rounded-circle d-flex align-items-center justify-content-center p-0 border-0 dropdown-action-btn" data-bs-toggle="dropdown">
+                      <i class="bi bi-three-dots"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
+                      <li><a class="dropdown-item small" href="itinerary_builder.html"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
+                      <li><a class="dropdown-item small" href="#"><i class="bi bi-share me-2"></i>Share Link</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item small text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="p-4 pb-0">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h5 class="fw-bold mb-0">Amalfi Road Trip</h5>
+                    <span class="badge rounded-pill fw-semibold" style="background-color: #fef3c7; color: var(--gt-secondary);">40%</span>
+                  </div>
+                  <div class="text-muted small mb-3">
+                    <i class="bi bi-calendar3 me-1"></i>Sep 4 – Sep 11, 2026
+                  </div>
+                  <div class="progress mb-4" style="height: 5px;">
+                    <div class="progress-bar" style="width: 40%; background-color: var(--gt-secondary);"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 pt-0">
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                  <div class="d-flex align-items-center">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=60&auto=format&fit=crop&q=80" alt="Avatar" class="rounded-circle border border-white" width="28" height="28">
+                  </div>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <a href="itinerary_builder.html" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
+                      <i class="bi bi-pencil text-dark"></i>
+                    </a>
+                    <a href="trip_view.html" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
+                      View Plan
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-4 trip-item" data-category="drafts">
+            <div class="trip-card-full h-100 d-flex flex-column justify-content-between shadow-sm">
+              <div>
+                <div class="trip-card-hero grayscale">
+                  <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&auto=format&fit=crop&q=80" alt="Parisian Weekend">
+                  
+                  <div class="position-absolute top-0 start-0 m-3 d-flex align-items-center gap-2">
+                    <span class="badge rounded-pill bg-secondary text-white fw-bold">5 DAYS</span>
+                    <span class="badge rounded-pill bg-dark bg-opacity-75 text-white fw-semibold">DRAFT</span>
+                  </div>
+                </div>
+
+                <div class="p-4 pb-0">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h5 class="fw-bold mb-0 text-muted">Parisian Weekend</h5>
+                  </div>
+                  <div class="text-muted small mb-3">
+                    <i class="bi bi-calendar3 me-1"></i>Dates TBD
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 pt-0">
+                <div class="pt-3 border-top">
+                  <a href="itinerary_builder.html" class="btn btn-light w-100 border rounded-3 py-2 fw-medium text-dark small">
+                    Continue Building
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-4">
+            <a href="plan_trip.html" class="empty-card-placeholder p-4 text-center">
+              <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background-color: #edece8; color: #64748b;">
+                <i class="bi bi-plus-lg fs-4"></i>
+              </div>
+              <h6 class="fw-bold text-dark mb-1">Plan Another Adventure</h6>
+              <p class="text-muted small mb-0">Dream big, plan small, travel often.</p>
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/my_itineraries.js"></script>
+</body>
+</html>
