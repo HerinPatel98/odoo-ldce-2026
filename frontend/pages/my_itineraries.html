@@ -8,74 +8,23 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/bootstrap-icons.css">
   <link rel="stylesheet" href="../css/theme.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f9f8f4;
+    }
+  </style>
 </head>
+
 <body>
 
-  <div class="container-fluid p-0">
-    <div class="row g-0">
-
-      <aside class="col-12 col-md-3 col-xl-2 sidebar d-flex flex-column justify-content-between p-4">
-        <div>
-          <div class="d-flex align-items-center gap-2 mb-5">
-            <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="background-color: var(--gt-primary-active); width: 34px; height: 34px;">
-              <i class="bi bi-compass fs-6"></i>
-            </div>
-            <span class="fs-5 gt-brand text-dark">GlobeTrotter</span>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-uppercase text-muted fw-bold small mb-2" style="font-size: 0.7rem; letter-spacing: 0.05em;">Explore</div>
-            <nav class="d-flex flex-column gap-1">
-              <a href="../index.html" class="nav-link-gt">
-                <i class="bi bi-grid-fill"></i>
-                <span>Dashboard</span>
-              </a>
-              <a href="my_itineraries.html" class="nav-link-gt active">
-                <i class="bi bi-map"></i>
-                <span>My Itineraries</span>
-              </a>
-              <a href="#" class="nav-link-gt">
-                <i class="bi bi-bookmark"></i>
-                <span>Saved Places</span>
-              </a>
-              <a href="#" class="nav-link-gt">
-                <i class="bi bi-wallet2"></i>
-                <span>Travel Budget</span>
-              </a>
-            </nav>
-          </div>
-
-          <div class="mb-4">
-            <div class="text-uppercase text-muted fw-bold small mb-2" style="font-size: 0.7rem; letter-spacing: 0.05em;">Account</div>
-            <nav class="d-flex flex-column gap-1">
-              <a href="#" class="nav-link-gt">
-                <i class="bi bi-gear"></i>
-                <span>Settings</span>
-              </a>
-              <a href="#" class="nav-link-gt">
-                <i class="bi bi-headset"></i>
-                <span>Support</span>
-              </a>
-            </nav>
-          </div>
-        </div>
-
-        <div class="upgrade-box p-3 text-white">
-          <div class="mb-2">
-            <i class="bi bi-send-fill fs-4"></i>
-          </div>
-          <p class="small fw-medium mb-3">
-            Upgrade to Premium for unlimited itineraries & priority support.
-          </p>
-          <a href="#" class="btn btn-light btn-sm w-100 fw-semibold rounded-pill py-2 text-dark">
-            View Plans
-          </a>
-        </div>
-      </aside>
-
-      <main class="col-12 col-md-9 col-xl-10 p-4 p-lg-5">
-
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-5">
+<main class="p-4 p-lg-5">
+<div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-5">
           <div class="d-flex align-items-center gap-4">
             <h3 class="fw-bold mb-0 gt-brand">My Trips</h3>
             
@@ -86,7 +35,7 @@
             </div>
           </div>
 
-          <a href="plan_trip.html" class="btn text-white rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary); border: none;">
+          <a href="plan_trip.html" onclick="parent.loadModule('pages/plan_trip.html'); return false;" class="btn text-white rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary); border: none;">
             <i class="bi bi-plus-lg"></i>
             <span>New Trip</span>
           </a>
@@ -110,7 +59,7 @@
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
-                      <li><a class="dropdown-item small" href="itinerary_builder.html"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
+                      <li><a class="dropdown-item small" href="itinerary_builder.html" onclick="parent.loadModule('pages/itinerary_builder.html'); return false;"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
                       <li><a class="dropdown-item small" href="#"><i class="bi bi-share me-2"></i>Share Link</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item small text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
@@ -141,10 +90,10 @@
                   </div>
 
                   <div class="d-flex align-items-center gap-2">
-                    <a href="itinerary_builder.html" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
+                    <a href="itinerary_builder.html" onclick="parent.loadModule('pages/itinerary_builder.html'); return false;" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
                       <i class="bi bi-pencil text-dark"></i>
                     </a>
-                    <a href="trip_view.html" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
+                    <a href="trip_view.html" onclick="parent.loadModule('pages/trip_view.html'); return false;" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
                       View Plan
                     </a>
                   </div>
@@ -169,7 +118,7 @@
                       <i class="bi bi-three-dots"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 rounded-3">
-                      <li><a class="dropdown-item small" href="itinerary_builder.html"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
+                      <li><a class="dropdown-item small" href="itinerary_builder.html" onclick="parent.loadModule('pages/itinerary_builder.html'); return false;"><i class="bi bi-pencil me-2"></i>Edit Trip</a></li>
                       <li><a class="dropdown-item small" href="#"><i class="bi bi-share me-2"></i>Share Link</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item small text-danger" href="#"><i class="bi bi-trash me-2"></i>Delete</a></li>
@@ -198,10 +147,10 @@
                   </div>
 
                   <div class="d-flex align-items-center gap-2">
-                    <a href="itinerary_builder.html" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
+                    <a href="itinerary_builder.html" onclick="parent.loadModule('pages/itinerary_builder.html'); return false;" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary-subtle card-action-btn">
                       <i class="bi bi-pencil text-dark"></i>
                     </a>
-                    <a href="trip_view.html" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
+                    <a href="trip_view.html" onclick="parent.loadModule('pages/trip_view.html'); return false;" class="btn btn-sm text-white rounded-3 px-3 py-1 fw-medium" style="background-color: var(--gt-primary-active);">
                       View Plan
                     </a>
                   </div>
@@ -234,7 +183,7 @@
 
               <div class="p-4 pt-0">
                 <div class="pt-3 border-top">
-                  <a href="itinerary_builder.html" class="btn btn-light w-100 border rounded-3 py-2 fw-medium text-dark small">
+                  <a href="itinerary_builder.html" onclick="parent.loadModule('pages/itinerary_builder.html'); return false;" class="btn btn-light w-100 border rounded-3 py-2 fw-medium text-dark small">
                     Continue Building
                   </a>
                 </div>
@@ -243,7 +192,7 @@
           </div>
 
           <div class="col-12 col-md-6 col-xl-4">
-            <a href="plan_trip.html" class="empty-card-placeholder p-4 text-center">
+            <a href="plan_trip.html" onclick="parent.loadModule('pages/plan_trip.html'); return false;" class="empty-card-placeholder p-4 text-center">
               <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background-color: #edece8; color: #64748b;">
                 <i class="bi bi-plus-lg fs-4"></i>
               </div>
@@ -252,11 +201,10 @@
             </a>
           </div>
         </div>
-      </main>
-    </div>
-  </div>
+</main>
 
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/my_itineraries.js"></script>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="../js/my_itineraries.js"></script>
+
 </body>
 </html>
