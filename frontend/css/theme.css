@@ -201,3 +201,152 @@ body {
   width: 28px;
   height: 28px;
 }
+
+/* Modern Glass Search Pill */
+.search-glass-container {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px -1px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-glass-container:focus-within {
+  background: #ffffff;
+  border-color: var(--gt-primary-active, #0d9488);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.search-glass-input {
+  font-size: 0.875rem;
+  color: var(--gt-text-main, #1e293b);
+}
+
+.search-glass-input::placeholder {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.search-icon {
+  font-size: 0.9rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.search-glass-container:focus-within .search-icon {
+  color: var(--gt-primary-active, #0d9488) !important;
+  transform: scale(1.05);
+}
+
+.search-kbd {
+  font-size: 0.7rem;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  border-radius: 6px;
+  padding: 0.15rem 0.4rem;
+  font-family: inherit;
+  font-weight: 600;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Glass Dropdown Results */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  z-index: 1050;
+}
+
+.search-result-item {
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.search-result-item:hover {
+  background-color: #f1f5f9;
+  transform: translateX(2px);
+}
+
+.search-result-icon {
+  width: 32px;
+  height: 32px;
+  background-color: #f8fafc;
+}
+
+/* Glass Date Filter Button */
+.date-filter-btn {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 9999px;
+  box-shadow: 0 2px 6px -1px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.date-filter-btn:hover,
+.date-filter-btn[aria-expanded="true"] {
+  background: #ffffff;
+  border-color: var(--gt-primary-active, #0d9488);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.date-icon-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: var(--gt-primary-active, #0d9488);
+  font-size: 0.8rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.date-filter-btn:hover .date-icon-badge {
+  background-color: #ccfbf1;
+  transform: scale(1.05);
+}
+
+.chevron-toggle {
+  transition: transform 0.25s ease;
+}
+
+.date-filter-btn[aria-expanded="true"] .chevron-toggle {
+  transform: rotate(180deg);
+}
+
+/* Glass Menu */
+.date-glass-menu {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  min-width: 220px;
+}
+
+.date-option-item {
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  color: var(--gt-text-main, #1e293b);
+}
+
+.date-option-item:hover {
+  background-color: #f1f5f9;
+  transform: translateX(2px);
+  color: var(--gt-text-main, #1e293b);
+}
+
+.date-option-item.active {
+  background-color: #ccfbf1 !important;
+  color: var(--gt-primary-active, #0d9488) !important;
+  font-weight: 600;
+}
+
+.date-option-item.active .check-icon {
+  display: inline-block !important;
+  color: var(--gt-primary-active, #0d9488);
+}

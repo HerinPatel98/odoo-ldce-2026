@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Account Settings</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body class="p-4 p-lg-5" style="background-color: var(--gt-bg); min-height: 100vh;">
+
+  <!-- Header -->
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
+    <div>
+      <h3 class="fw-bold mb-1 gt-brand">Account Settings</h3>
+      <p class="text-muted small mb-0">Manage profile details, security credentials, preferences, and notifications.</p>
+    </div>
+    
+    <!-- Success Toast Alert -->
+    <div id="saveToast" class="alert alert-success d-none py-2 px-3 mb-0 rounded-pill small shadow-sm d-flex align-items-center gap-2">
+      <i class="bi bi-check-circle-fill"></i>
+      <span>Changes saved successfully!</span>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Left Column: Navigation Pills -->
+    <div class="col-12 col-md-3">
+      <div class="card card-dashboard p-2 shadow-sm">
+        <nav class="nav nav-pills flex-column gap-1" id="settingsTabs" role="tablist">
+          <button class="nav-link active text-start rounded-3 fw-medium d-flex align-items-center gap-2" id="profile-tab" data-bs-toggle="pill" data-bs-target="#tab-profile" type="button" role="tab">
+            <i class="bi bi-person"></i>
+            <span>Profile</span>
+          </button>
+          <button class="nav-link text-start rounded-3 fw-medium d-flex align-items-center gap-2" id="security-tab" data-bs-toggle="pill" data-bs-target="#tab-security" type="button" role="tab">
+            <i class="bi bi-shield-lock"></i>
+            <span>Security</span>
+          </button>
+          <button class="nav-link text-start rounded-3 fw-medium d-flex align-items-center gap-2" id="preferences-tab" data-bs-toggle="pill" data-bs-target="#tab-preferences" type="button" role="tab">
+            <i class="bi bi-sliders"></i>
+            <span>Preferences</span>
+          </button>
+          <button class="nav-link text-start rounded-3 fw-medium d-flex align-items-center gap-2" id="notifications-tab" data-bs-toggle="pill" data-bs-target="#tab-notifications" type="button" role="tab">
+            <i class="bi bi-bell"></i>
+            <span>Notifications</span>
+          </button>
+          <button class="nav-link text-start rounded-3 fw-medium d-flex align-items-center gap-2 text-danger" id="danger-tab" data-bs-toggle="pill" data-bs-target="#tab-danger" type="button" role="tab">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>Danger Zone</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Right Column: Settings Content Panes -->
+    <div class="col-12 col-md-9">
+      <div class="tab-content" id="settingsTabContent">
+        
+        <!-- 1. Profile Tab -->
+        <div class="tab-pane fade show active" id="tab-profile" role="tabpanel">
+          <div class="card card-dashboard p-4 shadow-sm">
+            <h5 class="fw-bold mb-1">Public Profile</h5>
+            <p class="text-muted small mb-4">Update your personal identification information and avatar photo.</p>
+
+            <form id="profileForm">
+              <div class="d-flex align-items-center gap-4 mb-4 pb-3 border-bottom">
+                <img id="avatarPreview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Avatar" class="rounded-circle object-fit-cover shadow-sm border border-2 border-white" width="75" height="75">
+                <div>
+                  <input type="file" id="avatarInput" accept="image/*" class="d-none">
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 fw-medium me-2" onclick="document.getElementById('avatarInput').click()">
+                    Change Photo
+                  </button>
+                  <button type="button" id="removeAvatarBtn" class="btn btn-sm btn-light text-danger rounded-pill px-3 py-1">
+                    Remove
+                  </button>
+                  <div class="text-muted small mt-1" style="font-size: 0.72rem;">JPG, GIF or PNG. Max size 2MB.</div>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">First Name</label>
+                  <input type="text" class="form-control rounded-3" id="inputFirstName" value="Alex" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Last Name</label>
+                  <input type="text" class="form-control rounded-3" id="inputLastName" value="Mercer" required>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Email Address</label>
+                  <input type="email" class="form-control rounded-3" id="inputEmail" value="alex.mercer@globetrotter.travel" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Home Airport / City</label>
+                  <input type="text" class="form-control rounded-3" id="inputHomeAirport" value="HND - Tokyo, Japan">
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label small fw-semibold text-muted">Bio</label>
+                <textarea class="form-control rounded-3" id="inputBio" rows="3">Travel enthusiast, landscape photographer, and coffee hunter exploring cultural capitals across Asia and Europe.</textarea>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn text-white rounded-pill px-4 py-2 fw-semibold shadow-sm" style="background-color: var(--gt-primary-active); border: none;">
+                  Save Profile
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 2. Security Tab -->
+        <div class="tab-pane fade" id="tab-security" role="tabpanel">
+          <div class="card card-dashboard p-4 shadow-sm">
+            <h5 class="fw-bold mb-1">Security & Password</h5>
+            <p class="text-muted small mb-4">Ensure your account uses a long, unpredictable passphrase.</p>
+
+            <form id="securityForm">
+              <div class="mb-3">
+                <label class="form-label small fw-semibold text-muted">Current Password</label>
+                <input type="password" class="form-control rounded-3" id="currentPassword" required>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">New Password</label>
+                  <input type="password" class="form-control rounded-3" id="newPassword" minlength="8" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Confirm New Password</label>
+                  <input type="password" class="form-control rounded-3" id="confirmPassword" required>
+                </div>
+              </div>
+
+              <div id="passwordError" class="alert alert-danger d-none py-2 small rounded-3 mb-3"></div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn text-white rounded-pill px-4 py-2 fw-semibold shadow-sm" style="background-color: var(--gt-primary-active); border: none;">
+                  Update Password
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 3. Preferences Tab -->
+        <div class="tab-pane fade" id="tab-preferences" role="tabpanel">
+          <div class="card card-dashboard p-4 shadow-sm">
+            <h5 class="fw-bold mb-1">Travel & App Preferences</h5>
+            <p class="text-muted small mb-4">Configure local currency, measurement units, and map styling.</p>
+
+            <form id="preferencesForm">
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Preferred Currency</label>
+                  <select class="form-select rounded-3" id="prefCurrency">
+                    <option value="USD" selected>USD ($) - US Dollar</option>
+                    <option value="EUR">EUR (€) - Euro</option>
+                    <option value="JPY">JPY (¥) - Japanese Yen</option>
+                    <option value="GBP">GBP (£) - British Pound</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Distance Measurement</label>
+                  <select class="form-select rounded-3" id="prefDistance">
+                    <option value="miles" selected>Miles (mi)</option>
+                    <option value="kilometers">Kilometers (km)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Date Format</label>
+                  <select class="form-select rounded-3" id="prefDateFormat">
+                    <option value="MM/DD/YYYY" selected>MMM DD, YYYY (e.g. Oct 12, 2026)</option>
+                    <option value="DD/MM/YYYY">DD/MM/YYYY (e.g. 12/10/2026)</option>
+                    <option value="YYYY-MM-DD">YYYY-MM-DD (e.g. 2026-10-12)</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold text-muted">Default Budget View</label>
+                  <select class="form-select rounded-3" id="prefBudgetView">
+                    <option value="total" selected>Total Trip Expense</option>
+                    <option value="daily">Daily Average Rate</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn text-white rounded-pill px-4 py-2 fw-semibold shadow-sm" style="background-color: var(--gt-primary-active); border: none;">
+                  Save Preferences
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 4. Notifications Tab -->
+        <div class="tab-pane fade" id="tab-notifications" role="tabpanel">
+          <div class="card card-dashboard p-4 shadow-sm">
+            <h5 class="fw-bold mb-1">Notification Settings</h5>
+            <p class="text-muted small mb-4">Control which travel alerts and email digests you receive.</p>
+
+            <form id="notificationsForm">
+              <div class="d-flex flex-column gap-3 mb-4">
+                <div class="form-check form-switch d-flex justify-content-between align-items-center ps-0 pb-3 border-bottom">
+                  <div>
+                    <label class="form-check-label fw-semibold small d-block" for="notifyFlightAlerts">Flight & Route Schedule Changes</label>
+                    <span class="text-muted small" style="font-size: 0.75rem;">Get real-time updates if an activity or flight time is altered.</span>
+                  </div>
+                  <input class="form-check-input ms-3" type="checkbox" role="switch" id="notifyFlightAlerts" checked>
+                </div>
+
+                <div class="form-check form-switch d-flex justify-content-between align-items-center ps-0 pb-3 border-bottom">
+                  <div>
+                    <label class="form-check-label fw-semibold small d-block" for="notifyBudgetThreshold">Budget Threshold Warnings</label>
+                    <span class="text-muted small" style="font-size: 0.75rem;">Alert me when logged expenses exceed 85% of projected costs.</span>
+                  </div>
+                  <input class="form-check-input ms-3" type="checkbox" role="switch" id="notifyBudgetThreshold" checked>
+                </div>
+
+                <div class="form-check form-switch d-flex justify-content-between align-items-center ps-0">
+                  <div>
+                    <label class="form-check-label fw-semibold small d-block" for="notifyCollaborator">Collaborator Edits</label>
+                    <span class="text-muted small" style="font-size: 0.75rem;">Receive an email digest when someone modifies shared itinerary stops.</span>
+                  </div>
+                  <input class="form-check-input ms-3" type="checkbox" role="switch" id="notifyCollaborator">
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <button type="submit" class="btn text-white rounded-pill px-4 py-2 fw-semibold shadow-sm" style="background-color: var(--gt-primary-active); border: none;">
+                  Save Notifications
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- 5. Danger Zone Tab -->
+        <div class="tab-pane fade" id="tab-danger" role="tabpanel">
+          <div class="card p-4 shadow-sm border border-danger-subtle bg-white">
+            <h5 class="fw-bold text-danger mb-1">Danger Zone</h5>
+            <p class="text-muted small mb-4">Destructive operations that cannot be undone.</p>
+
+            <div class="d-flex flex-column gap-3">
+              <div class="d-flex justify-content-between align-items-center pb-3 border-bottom">
+                <div>
+                  <div class="fw-semibold small text-dark">Clear Local Storage Cache</div>
+                  <div class="text-muted small" style="font-size: 0.75rem;">Wipe local saved drafts and mock session analytics.</div>
+                </div>
+                <button type="button" id="clearCacheBtn" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1">
+                  Clear Cache
+                </button>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="fw-semibold small text-danger">Delete Account</div>
+                  <div class="text-muted small" style="font-size: 0.75rem;">Permanently remove your profile and all associated trips.</div>
+                </div>
+                <button type="button" id="deleteAccountBtn" class="btn btn-sm btn-danger rounded-pill px-3 py-1">
+                  Delete Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Storage utility helpers
+    const showToast = () => {
+      const toast = document.getElementById('saveToast');
+      toast.classList.remove('d-none');
+      setTimeout(() => toast.classList.add('d-none'), 3000);
+    };
+
+    // Load Initial Profile
+    const loadSavedSettings = () => {
+      const profile = JSON.parse(localStorage.getItem('gt_profile') || '{}');
+      if (profile.firstName) document.getElementById('inputFirstName').value = profile.firstName;
+      if (profile.lastName) document.getElementById('inputLastName').value = profile.lastName;
+      if (profile.email) document.getElementById('inputEmail').value = profile.email;
+      if (profile.homeAirport) document.getElementById('inputHomeAirport').value = profile.homeAirport;
+      if (profile.bio) document.getElementById('inputBio').value = profile.bio;
+      if (profile.avatar) document.getElementById('avatarPreview').src = profile.avatar;
+
+      const prefs = JSON.parse(localStorage.getItem('gt_preferences') || '{}');
+      if (prefs.currency) document.getElementById('prefCurrency').value = prefs.currency;
+      if (prefs.distance) document.getElementById('prefDistance').value = prefs.distance;
+      if (prefs.dateFormat) document.getElementById('prefDateFormat').value = prefs.dateFormat;
+      if (prefs.budgetView) document.getElementById('prefBudgetView').value = prefs.budgetView;
+
+      const notifs = JSON.parse(localStorage.getItem('gt_notifications') || '{}');
+      if (notifs.flight !== undefined) document.getElementById('notifyFlightAlerts').checked = notifs.flight;
+      if (notifs.budget !== undefined) document.getElementById('notifyBudgetThreshold').checked = notifs.budget;
+      if (notifs.collab !== undefined) document.getElementById('notifyCollaborator').checked = notifs.collab;
+    };
+
+    // 1. Profile Submit Handler
+    document.getElementById('profileForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const profileData = {
+        firstName: document.getElementById('inputFirstName').value,
+        lastName: document.getElementById('inputLastName').value,
+        email: document.getElementById('inputEmail').value,
+        homeAirport: document.getElementById('inputHomeAirport').value,
+        bio: document.getElementById('inputBio').value,
+        avatar: document.getElementById('avatarPreview').src
+      };
+      localStorage.setItem('gt_profile', JSON.stringify(profileData));
+      showToast();
+    });
+
+    // 2. Avatar File Upload Handler
+    document.getElementById('avatarInput')?.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (uploadEvent) => {
+          document.getElementById('avatarPreview').src = uploadEvent.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('removeAvatarBtn')?.addEventListener('click', () => {
+      document.getElementById('avatarPreview').src = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80';
+    });
+
+    // 3. Security Form Handler
+    document.getElementById('securityForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+      const errBox = document.getElementById('passwordError');
+
+      if (newPass !== confirmPass) {
+        errBox.textContent = 'Passwords do not match.';
+        errBox.classList.remove('d-none');
+        return;
+      }
+      errBox.classList.add('d-none');
+      e.target.reset();
+      showToast();
+    });
+
+    // 4. Preferences Form Handler
+    document.getElementById('preferencesForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const prefsData = {
+        currency: document.getElementById('prefCurrency').value,
+        distance: document.getElementById('prefDistance').value,
+        dateFormat: document.getElementById('prefDateFormat').value,
+        budgetView: document.getElementById('prefBudgetView').value
+      };
+      localStorage.setItem('gt_preferences', JSON.stringify(prefsData));
+      showToast();
+    });
+
+    // 5. Notifications Form Handler
+    document.getElementById('notificationsForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const notifsData = {
+        flight: document.getElementById('notifyFlightAlerts').checked,
+        budget: document.getElementById('notifyBudgetThreshold').checked,
+        collab: document.getElementById('notifyCollaborator').checked
+      };
+      localStorage.setItem('gt_notifications', JSON.stringify(notifsData));
+      showToast();
+    });
+
+    // 6. Danger Operations
+    document.getElementById('clearCacheBtn')?.addEventListener('click', () => {
+      if (confirm('Clear all local app cache and storage?')) {
+        localStorage.clear();
+        location.reload();
+      }
+    });
+
+    document.getElementById('deleteAccountBtn')?.addEventListener('click', () => {
+      if (confirm('Are you sure you want to permanently delete your GlobeTrotter account? This cannot be undone.')) {
+        localStorage.clear();
+        sessionStorage.clear();
+        window.top.location.href = '../login.html';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', loadSavedSettings);
+  </script>
+</body>
+</html>

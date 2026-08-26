@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Travel Budget & Expense Tracker</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .budget-progress-bar {
+      height: 8px;
+      border-radius: 9999px;
+      background-color: #edece8;
+      overflow: hidden;
+    }
+    .expense-row {
+      transition: background-color 0.15s ease;
+    }
+    .expense-row:hover {
+      background-color: #f8fafc;
+    }
+    .category-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .cat-stay { background-color: #ccfbf1; color: var(--gt-primary-active, #0d9488); }
+    .cat-flight { background-color: #fef3c7; color: var(--gt-secondary, #f59e0b); }
+    .cat-food { background-color: #ffedd5; color: #ea580c; }
+    .cat-activity { background-color: #e0f2fe; color: #0284c7; }
+  </style>
+</head>
+<body class="p-4 p-lg-5" style="background-color: var(--gt-bg, #f8fafc); min-height: 100vh;">
+
+  <!-- Header Section -->
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
+    <div>
+      <h3 class="fw-bold mb-1 gt-brand">Travel Budget &amp; Expenses</h3>
+      <p class="text-muted small mb-0">Track real-time trip expenditures, categorize transactions, and balance budgets.</p>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <select class="form-select rounded-pill px-3 py-2 small fw-semibold text-dark border shadow-sm" id="activeTripFilter" style="width: auto;">
+        <option value="autumn-tokyo" selected>Autumn in Tokyo (Oct 2026)</option>
+        <option value="amalfi-road">Amalfi Road Trip (Sep 2026)</option>
+        <option value="all-trips">All Trips Combined</option>
+      </select>
+      
+      <button class="btn text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary, #f59e0b); border: none;" data-bs-toggle="modal" data-bs-target="#addExpenseModal">
+        <i class="bi bi-plus-lg"></i>
+        <span>Log Expense</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Metric Overview Cards -->
+  <div class="row g-4 mb-4">
+    <!-- Card 1: Total Allocated Budget -->
+    <div class="col-12 col-md-4">
+      <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em;">Target Budget</span>
+            <span class="badge rounded-pill bg-light text-muted border">Cap</span>
+          </div>
+          <div class="fs-2 fw-bold text-dark mb-1" id="targetBudgetText">$1,500.00</div>
+          <span class="text-muted small">Configured limit for Tokyo trip</span>
+        </div>
+        <div class="mt-3 pt-2 border-top text-muted small d-flex align-items-center gap-2">
+          <i class="bi bi-wallet2 text-teal"></i>
+          <span>Primary currency: USD ($)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Spent So Far -->
+    <div class="col-12 col-md-4">
+      <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-muted small fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em;">Total Spent</span>
+            <span class="badge rounded-pill fw-semibold" style="background-color: #ccfbf1; color: var(--gt-primary-active);">82.6% Used</span>
+          </div>
+          <div class="fs-2 fw-bold text-dark mb-1" id="totalSpentText">$1,240.00</div>
+          <div class="budget-progress-bar my-2">
+            <div class="progress-bar" style="width: 82.6%; height: 100%; background-color: var(--gt-primary-active, #0d9488);"></div>
+          </div>
+        </div>
+        <div class="pt-2 border-top text-muted small d-flex align-items-center justify-content-between">
+          <span>Remaining to spend</span>
+          <span class="fw-bold text-dark" id="remainingBudgetText">$260.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Virtual Card Rewards -->
+    <div class="col-12 col-md-4">
+      <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between" style="background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%); color: #ffffff;">
+        <div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-light opacity-75 small fw-semibold text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.05em;">Cash-back Miles</span>
+            <span class="badge rounded-pill bg-teal bg-opacity-20 text-teal border border-teal" style="font-size: 0.68rem;">2.5% Pass</span>
+          </div>
+          <div class="fs-2 fw-bold text-white mb-1">3,100 <span class="fs-6 fw-normal opacity-75">pts</span></div>
+          <span class="text-light opacity-75 small">≈ $31.00 travel reward value</span>
+        </div>
+        <div class="mt-3 pt-2 border-top border-secondary border-opacity-25 d-flex justify-content-between align-items-center small">
+          <span class="text-light opacity-75">Card: •••• 4821</span>
+          <a href="#" class="text-teal text-decoration-none fw-semibold">Redeem</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2: Category Breakdown Donut + Detailed Expense Ledger -->
+  <div class="row g-4 mb-4">
+    <!-- Category Breakdown Card -->
+    <div class="col-12 col-xl-4">
+      <div class="card card-dashboard p-4 h-100 shadow-sm d-flex flex-column justify-content-between">
+        <div>
+          <h5 class="fw-bold mb-1">Expense Breakdown</h5>
+          <p class="text-muted small mb-3">Spend allocation across categories</p>
+          
+          <div class="position-relative d-flex align-items-center justify-content-center my-3" style="height: 190px;">
+            <canvas id="budgetDetailDonut"></canvas>
+            <div class="position-absolute text-center">
+              <span class="text-muted small d-block" style="font-size: 0.72rem;">Spent</span>
+              <span class="fs-5 fw-bold text-dark">$1,240</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column gap-2 small pt-3 border-top">
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="d-flex align-items-center gap-2 text-muted">
+              <span class="rounded-circle d-inline-block" style="width: 10px; height: 10px; background-color: #0d9488;"></span>
+              Stay &amp; Hotels
+            </span>
+            <span class="fw-bold text-dark">$720.00 (58%)</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="d-flex align-items-center gap-2 text-muted">
+              <span class="rounded-circle d-inline-block" style="width: 10px; height: 10px; background-color: #f59e0b;"></span>
+              Transit &amp; Flights
+            </span>
+            <span class="fw-bold text-dark">$310.00 (25%)</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="d-flex align-items-center gap-2 text-muted">
+              <span class="rounded-circle d-inline-block" style="width: 10px; height: 10px; background-color: #ea580c;"></span>
+              Food &amp; Dining
+            </span>
+            <span class="fw-bold text-dark">$210.00 (17%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Transactions Table Card -->
+    <div class="col-12 col-xl-8">
+      <div class="card card-dashboard p-4 h-100 shadow-sm">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <div>
+            <h5 class="fw-bold mb-1">Recent Transactions</h5>
+            <p class="text-muted small mb-0">Itemized log of confirmed receipts and purchases</p>
+          </div>
+          <button class="btn btn-sm btn-white bg-white border rounded-pill px-3 py-1 text-muted fw-medium" onclick="window.print()">
+            <i class="bi bi-download me-1"></i> Export Ledger
+          </button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-borderless align-middle mb-0" id="expensesTable">
+            <thead class="text-muted small text-uppercase" style="font-size: 0.72rem; border-bottom: 1px solid var(--gt-border, #e2e8f0);">
+              <tr>
+                <th scope="col" class="pb-2">Transaction</th>
+                <th scope="col" class="pb-2">Category</th>
+                <th scope="col" class="pb-2">Date</th>
+                <th scope="col" class="pb-2 text-end">Amount</th>
+                <th scope="col" class="pb-2 text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody id="expenseListBody">
+              <!-- Item 1 -->
+              <tr class="expense-row border-bottom">
+                <td class="py-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="category-badge cat-stay"><i class="bi bi-building"></i></div>
+                    <div>
+                      <div class="fw-semibold text-dark small">Hotel Gracery Shinjuku</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">7 nights · Booking #TYO-9842</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light text-muted border rounded-pill small">Stay</span></td>
+                <td class="text-muted small">Oct 12, 2026</td>
+                <td class="text-end fw-bold text-dark small">$720.00</td>
+                <td class="text-end"><button class="btn btn-sm text-danger border-0 p-1" onclick="deleteExpense(this, 720)"><i class="bi bi-trash"></i></button></td>
+              </tr>
+
+              <!-- Item 2 -->
+              <tr class="expense-row border-bottom">
+                <td class="py-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="category-badge cat-flight"><i class="bi bi-airplane-fill"></i></div>
+                    <div>
+                      <div class="fw-semibold text-dark small">Japan Rail 7-Day Pass</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Klook Voucher confirmation</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light text-muted border rounded-pill small">Transit</span></td>
+                <td class="text-muted small">Oct 10, 2026</td>
+                <td class="text-end fw-bold text-dark small">$310.00</td>
+                <td class="text-end"><button class="btn btn-sm text-danger border-0 p-1" onclick="deleteExpense(this, 310)"><i class="bi bi-trash"></i></button></td>
+              </tr>
+
+              <!-- Item 3 -->
+              <tr class="expense-row border-bottom">
+                <td class="py-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="category-badge cat-food"><i class="bi bi-cup-hot-fill"></i></div>
+                    <div>
+                      <div class="fw-semibold text-dark small">Omoide Yokocho Street Food</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Yakitori dinner &amp; drinks</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light text-muted border rounded-pill small">Food</span></td>
+                <td class="text-muted small">Oct 12, 2026</td>
+                <td class="text-end fw-bold text-dark small">$45.00</td>
+                <td class="text-end"><button class="btn btn-sm text-danger border-0 p-1" onclick="deleteExpense(this, 45)"><i class="bi bi-trash"></i></button></td>
+              </tr>
+
+              <!-- Item 4 -->
+              <tr class="expense-row">
+                <td class="py-3">
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="category-badge cat-activity"><i class="bi bi-ticket-perforated-fill"></i></div>
+                    <div>
+                      <div class="fw-semibold text-dark small">Tokyo Skytree Tembo Deck</div>
+                      <div class="text-muted" style="font-size: 0.75rem;">Fast-track 2x tickets</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="badge bg-light text-muted border rounded-pill small">Activity</span></td>
+                <td class="text-muted small">Oct 13, 2026</td>
+                <td class="text-end fw-bold text-dark small">$55.00</td>
+                <td class="text-end"><button class="btn btn-sm text-danger border-0 p-1" onclick="deleteExpense(this, 55)"><i class="bi bi-trash"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Expense Modal -->
+  <div class="modal fade" id="addExpenseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="fw-bold mb-0">Log New Expense</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form id="addExpenseForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-muted">Expense Description</label>
+              <input type="text" class="form-control rounded-3" id="expTitle" placeholder="e.g. Sushi Dai Tsukiji Market" required>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Amount ($)</label>
+                <input type="number" step="0.01" class="form-control rounded-3" id="expAmount" placeholder="0.00" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Category</label>
+                <select class="form-select rounded-3" id="expCategory">
+                  <option value="food" selected>Food &amp; Dining</option>
+                  <option value="stay">Stay &amp; Hotels</option>
+                  <option value="flight">Transit &amp; Flights</option>
+                  <option value="activity">Activities &amp; Tours</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Date</label>
+                <input type="date" class="form-control rounded-3" id="expDate" value="2026-10-14" required>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Payment Method</label>
+                <select class="form-select rounded-3" id="expMethod">
+                  <option value="card" selected>Virtual Card (•••• 4821)</option>
+                  <option value="cash">Local Cash (JPY)</option>
+                  <option value="other">Personal Card</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-semibold text-muted">Reference / Notes (Optional)</label>
+              <input type="text" class="form-control rounded-3" id="expNotes" placeholder="Receipt number or notes">
+            </div>
+          </div>
+
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn text-white rounded-pill px-4" style="background-color: var(--gt-secondary, #f59e0b);">Add Transaction</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/chart.min.js"></script>
+  <script>
+    // Initialize Donut Chart
+    let donutChart;
+    const ctx = document.getElementById('budgetDetailDonut');
+    if (ctx) {
+      donutChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Stay', 'Transit', 'Food', 'Activities'],
+          datasets: [{
+            data: [720, 310, 210, 55],
+            backgroundColor: ['#0d9488', '#f59e0b', '#ea580c', '#0284c7'],
+            borderWidth: 0,
+            cutout: '76%'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    }
+
+    let currentTotal = 1240.00;
+    const targetBudget = 1500.00;
+
+    function updateTotalDisplay() {
+      document.getElementById('totalSpentText').textContent = `$${currentTotal.toFixed(2)}`;
+      const remaining = targetBudget - currentTotal;
+      document.getElementById('remainingBudgetText').textContent = `$${Math.max(0, remaining).toFixed(2)}`;
+    }
+
+    function deleteExpense(btn, amount) {
+      if (confirm('Delete this expense entry?')) {
+        btn.closest('tr').remove();
+        currentTotal -= amount;
+        updateTotalDisplay();
+      }
+    }
+
+    document.getElementById('addExpenseForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('expTitle').value;
+      const amount = parseFloat(document.getElementById('expAmount').value) || 0;
+      const category = document.getElementById('expCategory').value;
+      const date = document.getElementById('expDate').value;
+      const notes = document.getElementById('expNotes').value || 'Manual entry';
+
+      const catMeta = {
+        food: { bg: 'cat-food', icon: 'bi-cup-hot-fill', label: 'Food' },
+        stay: { bg: 'cat-stay', icon: 'bi-building', label: 'Stay' },
+        flight: { bg: 'cat-flight', icon: 'bi-airplane-fill', label: 'Transit' },
+        activity: { bg: 'cat-activity', icon: 'bi-ticket-perforated-fill', label: 'Activity' }
+      };
+
+      const meta = catMeta[category] || catMeta.food;
+
+      const newRow = document.createElement('tr');
+      newRow.className = 'expense-row border-bottom';
+      newRow.innerHTML = `
+        <td class="py-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="category-badge ${meta.bg}"><i class="bi ${meta.icon}"></i></div>
+            <div>
+              <div class="fw-semibold text-dark small">${title}</div>
+              <div class="text-muted" style="font-size: 0.75rem;">${notes}</div>
+            </div>
+          </div>
+        </td>
+        <td><span class="badge bg-light text-muted border rounded-pill small">${meta.label}</span></td>
+        <td class="text-muted small">${date}</td>
+        <td class="text-end fw-bold text-dark small">$${amount.toFixed(2)}</td>
+        <td class="text-end"><button class="btn btn-sm text-danger border-0 p-1" onclick="deleteExpense(this, ${amount})"><i class="bi bi-trash"></i></button></td>
+      `;
+
+      document.getElementById('expenseListBody').prepend(newRow);
+      currentTotal += amount;
+      updateTotalDisplay();
+
+      const modalEl = document.getElementById('addExpenseModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
