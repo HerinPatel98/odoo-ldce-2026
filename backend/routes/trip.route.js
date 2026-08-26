@@ -1,5 +1,4 @@
-import express from "express";
-<<<<<<< HEAD
+import express from "express"
 import { createTrip, getTrips, getTripById, updateTrip, deleteTrip } from "../controllers/trip.controller.js";
 import { authMiddleware } from "../utils/authMiddleware.js";
 
