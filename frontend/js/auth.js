@@ -1,4 +1,4 @@
-const url = "http://localhost:8000";
+const url = window.location.port === "8000" ? "" : "http://localhost:8000";
 const logoutBtn = document.querySelectorAll(".logout-btn")
 if (logoutBtn) {
     console.log("logout button", logoutBtn)
@@ -102,7 +102,11 @@ if (registerForm) {
                 password
             })
         })
-            .then(response => response.json())
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message || "Registration failed.");
+                return data;
+            })
             .then(data => {
                 alert(
                     "Registration successful!"
@@ -162,14 +166,18 @@ if (loginForm) {
                 password
             })
         })
-            .then(response => response.json())
+            .then(async response => {
+                const data = await response.json();
+                if (!response.ok) throw new Error(data.message || "Login failed.");
+                return data;
+            })
             .then(data => {
                 alert("Login successful!");
                 window.location.href = "../index.html";
             })
             .catch(error => {
                 console.error("Error:", error);
-                alert("An error occurred during login.");
+                alert(error.message || "An error occurred during login.");
             });
 
     });

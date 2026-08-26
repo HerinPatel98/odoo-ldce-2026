@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import { authRouter } from "./routes/auth.route.js"
+import { tripRouter } from "./routes/trip.route.js"
 import dotenv from 'dotenv'
 import session from "express-session"
 dotenv.config()
@@ -29,4 +30,5 @@ app.use(
     })
 );
 app.use("/api/auth", authRouter)
+app.use("/api/trips", tripRouter)
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`))

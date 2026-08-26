@@ -16,6 +16,58 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" href="../css/trip.css">
+    <style>
+        .upload-wrapper {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 1rem;
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            overflow: hidden;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .upload-wrapper:hover {
+            border-color: var(--gt-primary-active, #0d9488);
+            background-color: #f1f5f9;
+        }
+        .upload-prompt {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            text-align: center;
+        }
+        .preview-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .preview-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .preview-container:hover .preview-overlay {
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,8 +83,8 @@
             <i class="bi bi-arrow-left me-1"></i>
             Back
         </button>
-        <div class="heading">
 
+        <div class="heading">
             <h1>Where to next?</h1>
             <p>Start your journey by setting the basics.</p>
         </div>
@@ -40,8 +92,7 @@
         <form id="tripForm">
 
             <div class="mb-3">
-                <label for="tripName">Trip Name</label>
-
+                <label for="tripName" class="form-label fw-semibold text-muted small">Trip Name</label>
                 <input
                     type="text"
                     id="tripName"
@@ -50,15 +101,11 @@
                     required>
             </div>
 
-
             <div class="row g-3 mb-3">
-
                 <div class="col-6">
-                    <label for="startDate">Start Date</label>
-
+                    <label for="startDate" class="form-label fw-semibold text-muted small">Start Date</label>
                     <div class="date-box">
                         <i class="bi bi-calendar3"></i>
-
                         <input
                             type="date"
                             id="startDate"
@@ -68,11 +115,9 @@
                 </div>
 
                 <div class="col-6">
-                    <label for="endDate">End Date</label>
-
+                    <label for="endDate" class="form-label fw-semibold text-muted small">End Date</label>
                     <div class="date-box">
                         <i class="bi bi-calendar3"></i>
-
                         <input
                             type="date"
                             id="endDate"
@@ -80,61 +125,62 @@
                             required>
                     </div>
                 </div>
-
             </div>
 
-
             <div class="mb-3">
-                <label for="description">
-                    Trip Description <span>(Optional)</span>
+                <label for="description" class="form-label fw-semibold text-muted small">
+                    Trip Description <span class="text-muted fw-normal">(Optional)</span>
                 </label>
-
                 <textarea
                     id="description"
                     class="form-control"
+                    rows="3"
                     placeholder="What's the vibe of this trip? Any specific goals or places you must visit?"
                 ></textarea>
             </div>
 
-
+            <!-- Fixed Cover Photo Box Container -->
             <div class="mb-3">
+                <label class="form-label fw-semibold text-muted small">Cover Photo</label>
+                
+                <input
+                    type="file"
+                    id="coverPhoto"
+                    class="d-none"
+                    accept=".png,.jpg,.jpeg,.webp">
 
-                <label>Cover Photo</label>
+                <div class="upload-wrapper" id="uploadWrapper">
+                    <!-- Default State: Upload Prompt -->
+                    <label for="coverPhoto" class="upload-prompt" id="uploadPrompt">
+                        <i class="bi bi-image fs-3 text-secondary mb-2"></i>
+                        <strong class="small text-dark">Click to upload cover photo</strong>
+                        <small class="text-muted" style="font-size: 0.75rem;">PNG, JPG or WebP up to 5MB</small>
+                    </label>
 
-                <label class="upload-box">
-
-                    <input
-                        type="file"
-                        id="coverPhoto"
-                        accept=".png,.jpg,.jpeg,.webp">
-
-                    <i class="bi bi-image"></i>
-
-                    <strong>Click to upload cover photo</strong>
-
-                    <small>PNG, JPG or WebP up to 5MB</small>
-
-                </label>
-
+                    <!-- Preview State: Hidden Initially -->
+                    <div class="preview-container d-none" id="previewContainer">
+                        <img id="coverPhotoPreview" alt="Cover photo preview">
+                        <div class="preview-overlay">
+                            <label for="coverPhoto" class="btn btn-sm btn-light rounded-pill px-3 py-1 fw-semibold small shadow">
+                                <i class="bi bi-arrow-repeat me-1"></i> Change
+                            </label>
+                            <button type="button" class="btn btn-sm btn-danger rounded-pill px-3 py-1 fw-semibold small shadow" id="removePhotoBtn">
+                                <i class="bi bi-trash me-1"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-
             <div class="privacy-box mb-4">
-
                 <div class="privacy-info">
-
                     <div class="privacy-icon">
                         <i class="bi bi-lock-fill"></i>
                     </div>
-
                     <div>
                         <strong>Private Trip</strong>
-
-                        <p>
-                            Only you and people you invite can see this trip.
-                        </p>
+                        <p class="mb-0">Only you and people you invite can see this trip.</p>
                     </div>
-
                 </div>
 
                 <div class="form-check form-switch">
@@ -144,29 +190,25 @@
                         id="privateTrip"
                         checked>
                 </div>
-
             </div>
 
-
             <div class="row g-2">
-
                 <div class="col-6">
                     <button
                         type="button"
-                        class="discard-btn w-100"
-                        onclick="document.getElementById('tripForm').reset()">
+                        class="btn btn-light w-100 py-2 border rounded-pill fw-semibold text-dark"
+                        id="discardBtn">
                         Discard
                     </button>
                 </div>
-
                 <div class="col-6">
                     <button
                         type="submit"
-                        class="create-btn w-100">
+                        class="btn text-white w-100 py-2 rounded-pill fw-semibold"
+                        style="background-color: var(--gt-primary-active, #0d9488); border: none;">
                         Create Trip Itinerary
                     </button>
                 </div>
-
             </div>
 
         </form>
@@ -175,13 +217,8 @@
 
 </div>
 
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/plan_trip.js"></script>
 
 </body>
-
 </html>

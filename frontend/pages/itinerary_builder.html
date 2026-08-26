@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Itinerary Builder</title>
+
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/bootstrap-icons.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    .builder-day-tab {
+      border: 1px solid var(--gt-border, #e2e8f0);
+      background-color: #ffffff;
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gt-text-muted, #64748b);
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .builder-day-tab:hover {
+      background-color: #f8fafc;
+      color: var(--gt-text-main, #0f172a);
+    }
+    .builder-day-tab.active {
+      background-color: var(--gt-primary-active, #0d9488);
+      color: #ffffff;
+      border-color: var(--gt-primary-active, #0d9488);
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+    }
+    .activity-card {
+      background-color: #ffffff;
+      border: 1px solid var(--gt-border, #e2e8f0);
+      border-radius: 1rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      position: relative;
+    }
+    .activity-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.08);
+    }
+    .drag-handle {
+      cursor: grab;
+      color: #cbd5e1;
+    }
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+    .category-icon-wrapper {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .category-flight { background-color: #fef3c7; color: var(--gt-secondary, #f59e0b); }
+    .category-stay { background-color: #ccfbf1; color: var(--gt-primary-active, #0d9488); }
+    .category-food { background-color: #ffedd5; color: #ea580c; }
+    .category-activity { background-color: #e0f2fe; color: #0284c7; }
+  </style>
+</head>
+<body class="p-4 p-lg-5" style="background-color: var(--gt-bg, #f8fafc); min-height: 100vh;">
+
+  <!-- Top Action & Navigation Header -->
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-3 border-bottom">
+    <div class="d-flex align-items-center gap-3">
+      <a href="my_itineraries.html" class="btn btn-white bg-white border rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+        <i class="bi bi-arrow-left text-dark"></i>
+      </a>
+      <div>
+        <div class="d-flex align-items-center gap-2">
+          <h4 class="fw-bold mb-0 gt-brand">Autumn in Tokyo</h4>
+          <span class="badge rounded-pill fw-bold bg-dark bg-opacity-75 text-white" style="font-size: 0.65rem;">BUILDER MODE</span>
+        </div>
+        <span class="text-muted small">Oct 12 – Oct 20, 2026 · 8 Days Total</span>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <button class="btn btn-white bg-white border rounded-pill px-3 py-2 d-flex align-items-center gap-2 small fw-semibold text-dark shadow-sm" id="btnAutoOptimize">
+        <i class="bi bi-magic text-teal"></i>
+        <span>Auto-Optimize Route</span>
+      </button>
+      <a href="trip_view.html" class="btn text-white rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-primary-active, #0d9488); border: none;">
+        <i class="bi bi-check2-circle"></i>
+        <span>Save &amp; View Plan</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Day Selection Pill Scroller -->
+  <div class="d-flex align-items-center gap-2 overflow-x-auto pb-3 mb-4" id="dayTabsContainer">
+    <button type="button" class="builder-day-tab active" data-day="1">Day 1 &bull; Oct 12</button>
+    <button type="button" class="builder-day-tab" data-day="2">Day 2 &bull; Oct 13</button>
+    <button type="button" class="builder-day-tab" data-day="3">Day 3 &bull; Oct 14</button>
+    <button type="button" class="builder-day-tab" data-day="4">Day 4 &bull; Oct 15</button>
+    <button type="button" class="builder-day-tab" data-day="5">Day 5 &bull; Oct 16</button>
+    <button type="button" class="builder-day-tab" data-day="6">Day 6 &bull; Oct 17</button>
+    <button type="button" class="builder-day-tab" data-day="7">Day 7 &bull; Oct 18</button>
+    <button type="button" class="builder-day-tab" data-day="8">Day 8 &bull; Oct 19</button>
+    <button type="button" class="btn btn-sm btn-light border rounded-pill px-3 py-2 fw-semibold text-muted" id="btnAddDay">
+      <i class="bi bi-plus-lg me-1"></i> Add Day
+    </button>
+  </div>
+
+  <div class="row g-4">
+    <!-- Left Column: Activity List for Selected Day -->
+    <div class="col-12 col-xl-8">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h5 class="fw-bold mb-0" id="currentDayTitle">Day 1 Schedule (Monday, Oct 12)</h5>
+          <span class="text-muted small" id="activityCountLabel">3 scheduled events</span>
+        </div>
+        <button class="btn btn-sm text-white rounded-pill px-3 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" style="background-color: var(--gt-secondary, #f59e0b); border: none;" data-bs-toggle="modal" data-bs-target="#addActivityModal">
+          <i class="bi bi-plus-lg"></i>
+          <span>Add Stop / Activity</span>
+        </button>
+      </div>
+
+      <!-- Activities Timeline Container -->
+      <div class="d-flex flex-column gap-3" id="activitiesList">
+        
+        <!-- Activity Item 1 -->
+        <div class="activity-card p-3 shadow-sm" data-id="1">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-grip-vertical fs-5 drag-handle mt-2"></i>
+            <div class="category-icon-wrapper category-flight">
+              <i class="bi bi-airplane-fill"></i>
+            </div>
+            
+            <div class="flex-grow-1 min-w-0">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-1">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-light text-muted border rounded-pill font-monospace">14:30</span>
+                  <h6 class="fw-bold mb-0 text-dark">Flight JL005 Arrival (SFO &rarr; HND)</h6>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="fw-semibold small text-dark">$450</span>
+                  <button class="btn btn-sm btn-light border-0 rounded-circle text-muted p-1 hover-delete" onclick="deleteActivity(1)"><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">Haneda International Terminal. Pick up Pocket WiFi &amp; take Keikyu train.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Item 2 -->
+        <div class="activity-card p-3 shadow-sm" data-id="2">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-grip-vertical fs-5 drag-handle mt-2"></i>
+            <div class="category-icon-wrapper category-stay">
+              <i class="bi bi-building"></i>
+            </div>
+            
+            <div class="flex-grow-1 min-w-0">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-1">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-light text-muted border rounded-pill font-monospace">16:30</span>
+                  <h6 class="fw-bold mb-0 text-dark">Hotel Gracery Shinjuku Check-in</h6>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="fw-semibold small text-dark">$180</span>
+                  <button class="btn btn-sm btn-light border-0 rounded-circle text-muted p-1 hover-delete" onclick="deleteActivity(2)"><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">Kabukicho district. Godzilla head terrace on 8th floor.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Item 3 -->
+        <div class="activity-card p-3 shadow-sm" data-id="3">
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-grip-vertical fs-5 drag-handle mt-2"></i>
+            <div class="category-icon-wrapper category-food">
+              <i class="bi bi-cup-hot"></i>
+            </div>
+            
+            <div class="flex-grow-1 min-w-0">
+              <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-1">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-light text-muted border rounded-pill font-monospace">19:00</span>
+                  <h6 class="fw-bold mb-0 text-dark">Dinner at Omoide Yokocho</h6>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <span class="fw-semibold small text-dark">$45</span>
+                  <button class="btn btn-sm btn-light border-0 rounded-circle text-muted p-1 hover-delete" onclick="deleteActivity(3)"><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+              <p class="text-muted small mb-0">Yakitori skewers and traditional alleyway atmosphere.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Column: Quick Notes & Live Day Budget -->
+    <div class="col-12 col-xl-4">
+      <!-- Day Expense Card -->
+      <div class="card card-dashboard p-4 shadow-sm mb-4">
+        <h5 class="fw-bold mb-1">Day 1 Budget Total</h5>
+        <p class="text-muted small mb-3">Estimated spend for this date</p>
+
+        <div class="d-flex align-items-baseline gap-2 mb-3 pb-3 border-bottom">
+          <span class="fs-3 fw-bold text-dark" id="dayTotalAmount">$675</span>
+          <span class="text-muted small">total planned</span>
+        </div>
+
+        <div class="d-flex flex-column gap-2 small text-muted">
+          <div class="d-flex justify-content-between">
+            <span><i class="bi bi-airplane me-2 text-warning"></i>Transport / Flight</span>
+            <span class="fw-semibold text-dark">$450</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><i class="bi bi-building me-2 text-teal"></i>Accommodation</span>
+            <span class="fw-semibold text-dark">$180</span>
+          </div>
+          <div class="d-flex justify-content-between">
+            <span><i class="bi bi-cup-straw me-2 text-danger"></i>Meals &amp; Drinks</span>
+            <span class="fw-semibold text-dark">$45</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Day Notes -->
+      <div class="card card-dashboard p-4 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="fw-bold mb-0">Day Notes &amp; Logistics</h6>
+          <span class="badge bg-light text-muted border rounded-pill">Auto-saved</span>
+        </div>
+        <textarea class="form-control border rounded-3 small p-3" rows="5" placeholder="Add custom notes, transit tips, confirmation codes or packing reminders for Day 1...">Remember to pick up Japan Rail Pass voucher exchange at Haneda Keikyu counter before boarding express train.</textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Activity Modal -->
+  <div class="modal fade" id="addActivityModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow">
+        <div class="modal-header border-bottom-0 pb-0">
+          <h5 class="fw-bold mb-0">Add Stop / Activity</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <form id="addActivityForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold text-muted">Activity Name</label>
+              <input type="text" class="form-control rounded-3" id="actTitle" placeholder="e.g. Meiji Jingu Shrine Visit" required>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Category</label>
+                <select class="form-select rounded-3" id="actCategory">
+                  <option value="activity" selected>Sightseeing / Activity</option>
+                  <option value="stay">Hotel / Stay</option>
+                  <option value="flight">Flight / Transit</option>
+                  <option value="food">Restaurant / Food</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Time</label>
+                <input type="time" class="form-control rounded-3" id="actTime" value="10:00" required>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Estimated Cost ($)</label>
+                <input type="number" class="form-control rounded-3" id="actCost" placeholder="0" value="25">
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold text-muted">Location / City</label>
+                <input type="text" class="form-control rounded-3" id="actLocation" placeholder="Tokyo, Japan">
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <label class="form-label small fw-semibold text-muted">Notes / Confirmation Details</label>
+              <textarea class="form-control rounded-3" id="actNotes" rows="2" placeholder="Entry rules, booking ID, or meeting spot..."></textarea>
+            </div>
+          </div>
+
+          <div class="modal-footer border-top-0 pt-0">
+            <button type="button" class="btn btn-light rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn text-white rounded-pill px-4" style="background-color: var(--gt-primary-active, #0d9488);">Add to Day</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Day Selection Switcher
+    const dayButtons = document.querySelectorAll('.builder-day-tab');
+    dayButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        dayButtons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const day = this.getAttribute('data-day');
+        document.getElementById('currentDayTitle').textContent = `Day ${day} Schedule`;
+      });
+    });
+
+    // Delete Activity Handler
+    function deleteActivity(id) {
+      const card = document.querySelector(`.activity-card[data-id="${id}"]`);
+      if (card && confirm('Delete this stop from the itinerary?')) {
+        card.remove();
+      }
+    }
+
+    // Add Activity Form Submit Handler
+    document.getElementById('addActivityForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('actTitle').value;
+      const category = document.getElementById('actCategory').value;
+      const time = document.getElementById('actTime').value;
+      const cost = document.getElementById('actCost').value || '0';
+      const notes = document.getElementById('actNotes').value;
+
+      const catClasses = {
+        activity: { bg: 'category-activity', icon: 'bi-geo-alt-fill' },
+        stay: { bg: 'category-stay', icon: 'bi-building' },
+        flight: { bg: 'category-flight', icon: 'bi-airplane-fill' },
+        food: { bg: 'category-food', icon: 'bi-cup-hot' }
+      };
+
+      const selectedCat = catClasses[category] || catClasses.activity;
+      const newId = Date.now();
+
+      const newCard = document.createElement('div');
+      newCard.className = 'activity-card p-3 shadow-sm';
+      newCard.setAttribute('data-id', newId);
+      newCard.innerHTML = `
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-grip-vertical fs-5 drag-handle mt-2"></i>
+          <div class="category-icon-wrapper ${selectedCat.bg}">
+            <i class="bi ${selectedCat.icon}"></i>
+          </div>
+          <div class="flex-grow-1 min-w-0">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-1">
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-light text-muted border rounded-pill font-monospace">${time}</span>
+                <h6 class="fw-bold mb-0 text-dark">${title}</h6>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="fw-semibold small text-dark">$${cost}</span>
+                <button class="btn btn-sm btn-light border-0 rounded-circle text-muted p-1 hover-delete" onclick="deleteActivity(${newId})"><i class="bi bi-trash"></i></button>
+              </div>
+            </div>
+            <p class="text-muted small mb-0">${notes}</p>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('activitiesList').appendChild(newCard);
+      
+      const modalEl = document.getElementById('addActivityModal');
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
