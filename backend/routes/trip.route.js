@@ -8,4 +8,6 @@ router.post("/", authMiddleware, createTrip);
 router.get("/", authMiddleware, getTrips);
 router.get("/:id", authMiddleware, getTripById);
 router.put("/:id", authMiddleware, updateTrip);
-router.delete("/:id", authMiddleware, deleteTrip);  
+router.delete("/:id", authMiddleware, deleteTrip);
+
+export { router as tripRouter };
