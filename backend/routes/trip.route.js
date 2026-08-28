@@ -1,5 +1,4 @@
-import express from "express"
-import express from "express"
+import express from "express";
 import { createTrip, getTrips, getTripById, updateTrip, deleteTrip } from "../controllers/trip.controller.js";
 import { authMiddleware } from "../utils/authMiddleware.js";
 
@@ -9,8 +8,4 @@ router.post("/", authMiddleware, createTrip);
 router.get("/", authMiddleware, getTrips);
 router.get("/:id", authMiddleware, getTripById);
 router.put("/:id", authMiddleware, updateTrip);
-router.delete("/:id", authMiddleware, deleteTrip);
-
-
-
-export { router as tripRouter };
+router.delete("/:id", authMiddleware, deleteTrip);  
