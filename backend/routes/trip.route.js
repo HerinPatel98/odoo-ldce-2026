@@ -1,7 +1,16 @@
-import express from "express";
-import { getTrip, updateChecklist } from "../controllers/trip.controller.js";
+import express from "express"
+import express from "express"
+import { createTrip, getTrips, getTripById, updateTrip, deleteTrip } from "../controllers/trip.controller.js";
+import { authMiddleware } from "../utils/authMiddleware.js";
 
-export const tripRouter = express.Router();
+const router = express.Router();
 
-tripRouter.get("/:slug", getTrip);
-tripRouter.patch("/:slug/checklist", updateChecklist);
+router.post("/", authMiddleware, createTrip);
+router.get("/", authMiddleware, getTrips);
+router.get("/:id", authMiddleware, getTripById);
+router.put("/:id", authMiddleware, updateTrip);
+router.delete("/:id", authMiddleware, deleteTrip);
+
+
+
+export { router as tripRouter };

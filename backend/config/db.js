@@ -1,5 +1,11 @@
 import knex from "knex"
-
+import dotenv from "dotenv"
+try {
+    dotenv.config()
+}
+catch (error) {
+    console.error("Error loading .env file:", error)
+}
 export const db = knex({
     client: "mysql2",
 
